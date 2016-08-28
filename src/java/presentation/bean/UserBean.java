@@ -8,6 +8,8 @@ package presentation.bean;
 import businessLogic.controller.RoleAuthenticator;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  * <p>A simple managed bean to mediate between the user and 
@@ -60,9 +62,19 @@ public class UserBean {
         this.message = message;
     }
     
-    public void validateUser() {
+    public String validateUser() {
         RoleAuthenticator roleAuthenticator = new RoleAuthenticator();
         message = roleAuthenticator.validateUser(id, username, password);
+        return message;
+    }
+    
+    public String logout() {
+        HttpSession session = (HttpSession)
+             FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return "login";
     }
     
 }

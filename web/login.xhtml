@@ -7,7 +7,7 @@
     </h:head>
     <h:body>
         <panel>
-            <h:form>
+            <h:form id="login">
                 <h1>UNKIT</h1>
                 <hr/>
                 <h2>Ingresar al sistema</h2>   
@@ -19,15 +19,16 @@
                     <label>Contraseña:</label>
                     <h:inputSecret value="#{userBean.password}" required="true" requiredMessage="¡La contraseña es requerida!"/>                                                </h:panelGrid>
                 <br/>
-                <h:commandButton action="#{userBean.validateUser}" value="Ingresar"/>
+                <h:commandButton id="submit" 
+                             type="submit"
+                             value="Login"
+                             action="#{userBean.validateUser}"/>
                 <br/><br/>
-                <label>Mensaje: </label>
-                <h:outputText value="#{userBean.message}"/>
+                <!--<label>Mensaje: </label>
+                <h:outputText value="#{userBean.message}"/>-->
                 <br/><br/>
                 <a href="index.xhtml">Inicio</a><br/>  
             </h:form>
         </panel>
-        
-       
     </h:body>
 </html>
