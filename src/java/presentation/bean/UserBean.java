@@ -6,7 +6,7 @@
 package presentation.bean;
 
 import businessLogic.controller.RoleAuthenticator;
-import javax.annotation.ManagedBean;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -61,7 +61,7 @@ public class UserBean {
     
     public void validateUser() {
         RoleAuthenticator roleAuthenticator = new RoleAuthenticator();
-        message = roleAuthenticator.validateUser(id, username, password);
+        message = roleAuthenticator.validateUser(username, password);
     }
     
 }
