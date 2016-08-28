@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package businessLogic.controller;
+package dataAccess.dao;
 
 /**
- * TODO: Please delete me as soon as you can!
+ *
  * @author mauricio
  */
-public class Dump {
+public class CustomerDAO {
     
 }

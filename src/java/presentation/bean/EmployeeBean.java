@@ -6,9 +6,9 @@
 package presentation.bean;
 
 /**
- * TODO: Please delete me as soon as you can!
+ *
  * @author mauricio
  */
-public class buyOrder {
+public class EmployeeBean {
     
 }
