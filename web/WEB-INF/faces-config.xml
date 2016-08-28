@@ -26,9 +26,14 @@
             <to-view-id>/manager.xhtml</to-view-id>            
         </navigation-case>
         <navigation-case>
-            <from-outcome>app-main</from-outcome>
-            <to-view-id>/index.xhtml</to-view-id>
+            <from-outcome>Can't find the user</from-outcome>
+            <to-view-id>/registration.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+       <!-- <navigation-case>
+            <from-outcome>Can't find the user</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>-->
     </navigation-rule>
 </faces-config>

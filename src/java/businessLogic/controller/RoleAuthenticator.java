@@ -44,9 +44,12 @@ public class RoleAuthenticator {
         User user = userDAO.searchByID(id);
         
         if (user != null) {
-            if (!password.equals(user.getPassword())) {
-                return "Incorrect password";
-            } else {
+            if(id.equals(user.getId()) && username.equals(user.getUsername())){
+                if (!password.equals(user.getPassword())) {
+                    return "Incorrect password";
+                } 
+                else 
+                {
                 if (isEmployee(id)) {
                     //context.getExternalContext().getSessionMap().put(USER_SESSION_KEY, user);
                     EmployeeDAO employeeDAO = new EmployeeDAO();
@@ -62,8 +65,15 @@ public class RoleAuthenticator {
                 } else if (isCustomer(id)) {
                     return "customer";
                 }
-                return "anon-user"; // not implemented
+                return "error-user"; // puede error de llaves 
+                                    //if(id.equals(user.getId()) && username.equals(user.getUsername())){
+                                    //if (!password.eq
             }
+                
+            }
+            else{
+            return "verifique sus datos";
+                    }   
         } else {
             return "Can't find the user";
         }
