@@ -19,6 +19,7 @@ import javax.faces.bean.ViewScoped;
 public class UserBean {
     
     private String message;
+    
     /** <p>User properties.</p> */
     private String id;
     private String username;
@@ -27,11 +28,11 @@ public class UserBean {
     public UserBean() {
     }
 
-    public String getID() {
+    public String getId() {
         return id;
     }
 
-    public void setID(String id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -61,7 +62,7 @@ public class UserBean {
     
     public void validateUser() {
         RoleAuthenticator roleAuthenticator = new RoleAuthenticator();
-        message = roleAuthenticator.validateUser(username, password);
+        message = roleAuthenticator.validateUser(id, username, password);
     }
     
 }

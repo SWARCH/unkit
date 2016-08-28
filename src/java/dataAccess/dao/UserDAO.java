@@ -33,12 +33,14 @@ public class UserDAO {
     }
     
     public User searchByUsername(String username) {
+        // TODO This method is wrong, DON'T USE IT yet until it is correct.
         EntityManager em = emf.createEntityManager();
         User user = null;
         try {
             user = em.find(User.class, username);
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(e);
         } finally {
             em.close();
         }

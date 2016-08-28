@@ -17,10 +17,10 @@ public class RoleAuthenticator {
     public RoleAuthenticator() {
     }
     
-    public String validateUser(String username, String password) {
+    public String validateUser(String id, String username, String password) {
         User user = null;
         UserDAO userDAO = new UserDAO();
-        user = userDAO.searchByUsername(username);
+        user = userDAO.searchByID(id);
         
         if (user != null) {
             if (!password.equals(user.getPassword())) {
