@@ -47,4 +47,18 @@ public class UserDAO {
         return user;
     }
     
+    public User persist(User user) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.persist(user);
+            em.getTransaction().commit();
+        } catch(Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return user;
+    }
 }

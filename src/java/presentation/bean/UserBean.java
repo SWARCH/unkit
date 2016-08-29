@@ -5,7 +5,7 @@
  */
 package presentation.bean;
 
-import businessLogic.controller.RoleAuthenticator;
+import businessLogic.controller.*;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -75,6 +75,11 @@ public class UserBean {
             session.invalidate();
         }
         return "login";
+    }
+    
+    public void createAccount(){
+        HandleAccount createAccount = new HandleAccount();
+        message = createAccount.createAccount(username, password, id);
     }
     
 }
