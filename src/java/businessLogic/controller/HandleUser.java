@@ -9,17 +9,17 @@ import dataAcces.entity.User;
  */
 public class HandleUser {
     
-    public String createAccount(String userName, String password, String id){
-        User account = new User();
+    public String createUser(String userName, String password, String id){
+        User user = new User();
 
-        account.setId(id);
-        account.setPassword(password);
-        account.setUsername(userName);
+        user.setId(id);
+        user.setPassword(password);
+        user.setUsername(userName);
 
         UserDAO UserDAO = new UserDAO();
-        User userE = UserDAO.persist(account);
+        User userE = UserDAO.persist(user);
         if (userE != null)
-            return "la cuenta ha sido creada, su número de cuenta es " + account.getId() + ".";
+            return "la cuenta ha sido creada, su número de cuenta es " + user.getId() + ".";
         else
             return "la cuenta no pudo ser creada.";  
     }

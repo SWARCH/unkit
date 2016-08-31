@@ -77,9 +77,9 @@ public class UserBean {
         return "login";
     }
     
-    public void createAccount(){
-        HandleUser createAccount = new HandleUser();
-        this.setMessage(createAccount.createAccount(username, password, id));
+    public void createUser(){
+        HandleUser userCreator = new HandleUser();
+        this.setMessage(userCreator.createUser(username, password, id));
     }
     
 }
