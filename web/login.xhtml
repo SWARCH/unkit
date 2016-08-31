@@ -22,7 +22,7 @@
                 <h:commandButton id="submit" 
                              type="submit"
                              value="Login"
-                             action="#{userBean.validateUser}"/>
+                             action="#{userBean.validateUser()}"/>
                 <br/><br/>
                 <label>Mensaje: </label>
                 <h:outputText value="#{userBean.message}"/>

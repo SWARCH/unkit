@@ -6,6 +6,7 @@
 package dataAccess.dao;
 
 import dataAcces.entity.Customer;
+import dataAcces.entity.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -26,6 +27,21 @@ public class CustomerDAO {
             customer = em.find(Customer.class, userid);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return customer;
+    }
+    
+    public Customer persist(Customer customer) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.persist(customer);
+            em.getTransaction().commit();
+        } catch(Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
         } finally {
             em.close();
         }

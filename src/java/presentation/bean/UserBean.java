@@ -79,7 +79,7 @@ public class UserBean {
     
     public void createAccount(){
         HandleUser createAccount = new HandleUser();
-        message = createAccount.createAccount(username, password, id);
+        this.setMessage(createAccount.createAccount(username, password, id));
     }
     
 }

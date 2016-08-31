@@ -6,26 +6,44 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
         <title>register</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
         <div>Si eres un cliente de la empresa, por favor registrate</div>
+        <h:form>
+            
         <h:panelGrid columns="2">
                     <label>Documento:</label>
                     <h:inputText value="#{userBean.id}" required="true" requiredMessage="¡El ID es requerido!"/>
-                    <label>Nombre:</label>
+                    
+                    <!--<label>Nombre Organiazación:</label>
+                    <h:inputText value="#{tradeName}" required="true" requiredMessage="¡El ID es requerido!"/>
+                        <label>type:</label>
+                        <h:selectOneMenu id="type"
+                         value="#{type}">
+                        <f:selectItem id="item1" itemLabel="Ensambladora" itemValue="1" />
+                        <f:selectItem id="item2" itemLabel="Mayorista" itemValue="2" />
+                   </h:selectOneMenu>
+                    
+                   -->
+                   <label>Usuario:</label>
                     <h:inputText value="#{userBean.username}" required="true" requiredMessage="¡El Nombre es requerido!"/>
+                    
                     <label>Crear Contraseña:</label>
                     <h:inputText value="#{userBean.password}" required="true" requiredMessage="¡La Contraseña es requerida!"/>
+                    
          </h:panelGrid>
                     <br/>
-                    <h:commandButton action="#{UserBean.createAccount()}" value="Crear"/>
+                    <h:commandButton action="#{userBean.createAccount}" value="Crear"/>
                     <br/><br/>
-                    <h:outputText value="#{UserBean.message}"/>
+                    <h:outputText value="#{userBean.message}"/>
                     <br/><br/>
                     <a href="login.xhtml">Ingresar</a><br/>  
+                    
+                    </h:form>
     </body>
 </html>
