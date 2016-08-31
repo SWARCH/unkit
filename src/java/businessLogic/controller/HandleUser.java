@@ -7,7 +7,7 @@ import dataAcces.entity.User;
  *
  * @author arqsoft_2016_2
  */
-public class HandleAccount {
+public class HandleUser {
     
     public String createAccount(String userName, String password, String id){
         User account = new User();

@@ -12,11 +12,20 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div>Si eres un cliente una empresa por favor registrate</div>
+        <div>Si eres un cliente de la empresa, por favor registrate</div>
         <h:panelGrid columns="2">
-                    <label>ID:</label>
+                    <label>Documento:</label>
                     <h:inputText value="#{userBean.id}" required="true" requiredMessage="¡El ID es requerido!"/>
+                    <label>Nombre:</label>
+                    <h:inputText value="#{userBean.username}" required="true" requiredMessage="¡El Nombre es requerido!"/>
+                    <label>Crear Contraseña:</label>
+                    <h:inputText value="#{userBean.password}" required="true" requiredMessage="¡La Contraseña es requerida!"/>
          </h:panelGrid>
-                <br/>
+                    <br/>
+                    <h:commandButton action="#{UserBean.createAccount()}" value="Crear"/>
+                    <br/><br/>
+                    <h:outputText value="#{UserBean.message}"/>
+                    <br/><br/>
+                    <a href="login.xhtml">Ingresar</a><br/>  
     </body>
 </html>

@@ -78,7 +78,7 @@ public class UserBean {
     }
     
     public void createAccount(){
-        HandleAccount createAccount = new HandleAccount();
+        HandleUser createAccount = new HandleUser();
         message = createAccount.createAccount(username, password, id);
     }
     
