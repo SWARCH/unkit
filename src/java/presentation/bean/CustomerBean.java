@@ -8,6 +8,8 @@ package presentation.bean;
 import businessLogic.controller.HandleCustomer;
 import businessLogic.controller.HandleUser;
 import businessLogic.controller.RoleAuthenticator;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +17,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author VangsPardz
  */
+
+@ManagedBean
+@ViewScoped
 public class CustomerBean {
     
     private String message;
@@ -35,11 +40,11 @@ public class CustomerBean {
         this.id = id;
     }
 
-    public String getTradename() {
+    public String getTradeName() {
         return tradeName;
     }
 
-    public void setTradename(String name) {
+    public void setTradeName(String name) {
         this.tradeName = name;
     }
 
@@ -60,8 +65,8 @@ public class CustomerBean {
     }
     
     public void createAccount(){
-       // HandleCustomer createAccount = new HandleCustomer();
-        //this.setMessage(createAccount.createAccount(id, tradeName, type));
+        HandleCustomer createAccount = new HandleCustomer();
+        this.setMessage(createAccount.createAccount(id, tradeName, type));
     }
     
     

@@ -6,6 +6,7 @@
 package presentation.bean;
 
 import businessLogic.controller.*;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -26,6 +27,9 @@ public class UserBean {
     private String id;
     private String username;
     private String password;
+    private String tradeName;
+    private String type;
+
 
     public UserBean() {
     }
@@ -44,6 +48,21 @@ public class UserBean {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+ public String getTradeName() {
+        return tradeName;
+    }
+
+    public void setTradeName(String tradename) {
+        this.tradeName = tradename;
+    }
+    
+     public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getPassword() {
@@ -79,7 +98,9 @@ public class UserBean {
     
     public void createAccount(){
         HandleUser createAccount = new HandleUser();
+        HandleCustomer cx = new HandleCustomer();
         this.setMessage(createAccount.createAccount(username, password, id));
+        this.setMessage(cx.createAccount(id, tradeName, type));
     }
     
 }

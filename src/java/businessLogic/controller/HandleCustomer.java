@@ -1,10 +1,8 @@
 package businessLogic.controller;
 
 import dataAcces.entity.Customer;
-import dataAccess.dao.UserDAO;
-import dataAcces.entity.User;
 import dataAccess.dao.CustomerDAO;
-import javax.persistence.metamodel.SingularAttribute;
+
 
 /**
  *
@@ -26,6 +24,4 @@ public class HandleCustomer {
         else
             return "la cuenta no pudo ser creada.";  
     }
-
-    
 }

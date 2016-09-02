@@ -17,25 +17,24 @@ and open the template in the editor.
         <h:form>
             
         <h:panelGrid columns="2">
+            
                     <label>Documento:</label>
                     <h:inputText value="#{userBean.id}" required="true" requiredMessage="¡El ID es requerido!"/>
                     
-                    <!--<label>Nombre Organiazación:</label>
-                    <h:inputText value="#{tradeName}" required="true" requiredMessage="¡El ID es requerido!"/>
+                    <label>Nombre Organiazación:</label>
+                    <h:inputText value="#{userBean.tradeName}" required="true" requiredMessage="¡El ID es requerido!"/>
                         <label>type:</label>
                         <h:selectOneMenu id="type"
-                         value="#{type}">
+                         value="#{userBean.type}">
                         <f:selectItem id="item1" itemLabel="Ensambladora" itemValue="1" />
                         <f:selectItem id="item2" itemLabel="Mayorista" itemValue="2" />
                    </h:selectOneMenu>
                     
-                   -->
                    <label>Usuario:</label>
                     <h:inputText value="#{userBean.username}" required="true" requiredMessage="¡El Nombre es requerido!"/>
                     
                     <label>Crear Contraseña:</label>
                     <h:inputText value="#{userBean.password}" required="true" requiredMessage="¡La Contraseña es requerida!"/>
-                    
          </h:panelGrid>
                     <br/>
                     <h:commandButton action="#{userBean.createAccount}" value="Crear"/>
