@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Registro de empleados</title>
+    </h:head>
+    <h:body>
+        <center>
+            <h:form>
+                <h1>Registro de empleados</h1>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Nombre"></h:outputText>
+                    <h:inputText id="employeeNameInputText" value="#{employeeBean.name}" required="true" requiredMessage="Se requiere un nombre"></h:inputText> 
+
+                    <!--Revisar, el id se debe agregar a user y employee-->
+                    <h:outputText value="Identificación"></h:outputText>
+                    <h:inputText id="employeeIdInputText" value="#{userBean.id}"  required="true" requiredMessage="Se requiere un número de identificación"></h:inputText>
+
+                    <h:outputText value="Salario"></h:outputText>
+                    <h:inputText id="employeeSalaryInputText" value="#{employeeBean.salary}" required="true" requiredMessage="Se requiere especificar salario"></h:inputText>
+
+                    <h:outputText value="Tipo de contrato"></h:outputText>
+                    <h:selectOneMenu id="contractInputText" value="#{employeeBean.contractSalary}">
+                        <f:selectItem id="item1" itemLabel="Indenfinido" itemValue="1" />
+                        <f:selectItem id="item2" itemLabel="Prestación de servicios" itemValue="2" />
+                        <f:selectItem id="item3" itemLabel="Termino fijo" itemValue="3"/> 
+                    </h:selectOneMenu>
+
+                    <h:outputText value="Estado de contrato"></h:outputText>
+                    <h:selectOneMenu id="contractStatusInputText" value="#{employeeBean.contractStatus}">
+                        <f:selectItem id="item4" itemLabel="Activo" itemValue="1" />
+                        <f:selectItem id="item5" itemLabel="Inactivo" itemValue="2" />
+                    </h:selectOneMenu>
+                    <h:outputText value="Role"></h:outputText>
+
+                    <h:outputText value="Nombre de usuario"></h:outputText>
+                    <h:inputText id="usernameEmployeeInputText" value="#{userBean.username}" required="true" requiredMessage="Se requiere un nombre de ususario"></h:inputText>
+
+                    <!-->Revisar la validación, la entrada de los dos campos debe ser igual<-->
+                    <h:outputText value="Contraseña"></h:outputText>
+                    <h:inputSecret id="passwordEmployeeInputSecret" value="#{userBean.password}" required="true" requiredMessage="Se requiere una contraseña"></h:inputSecret>
+                    <!-->Revisar la validación, la entrada de los dos campos debe ser igual
+                    <h:outputText value="Escriba de nuevo la contraseña"></h:outputText>
+                    <h:inputSecret id="passwordConfirmationEmployeeInputSecret" value="#{userBean.password}" required="true" requiredMessage="Se requiere una contraseña"></h:inputSecret>
+                    <-->
+                </h:panelGrid>
+
+                <br/>
+                <h:commandButton id="registerEmployeeButton" action="#{userBean.createUser}" value="Registrar"></h:commandButton>
+                <br/><br/>
+                <h:outputText value="#{userBean.message}"/>
+            </h:form>
+        </center>
+    </h:body>
+</html>
+
