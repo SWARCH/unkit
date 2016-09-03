@@ -38,7 +38,7 @@
         </navigation-case>
         <navigation-case>
             <from-outcome>manager</from-outcome>
-            <to-view-id>/manager.xhtml</to-view-id>            
+            <to-view-id>/management/manager.xhtml</to-view-id>            
         </navigation-case>
         <navigation-case>
             <from-outcome>Can't find the user</from-outcome>
