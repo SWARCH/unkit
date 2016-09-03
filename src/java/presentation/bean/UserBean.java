@@ -6,6 +6,7 @@
 package presentation.bean;
 
 import businessLogic.controller.*;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -164,6 +165,11 @@ public class UserBean {
     @Override
     public String toString() {
         return "userBean: " + username +" "+ id +" "+ name +" "+ salary +" "+ contractStatus +" "+ contractType +" "+  password ;
+    }
+    
+    public List getEmployeeList() {
+        HandleEmployee employeeViewer = new HandleEmployee();
+        return employeeViewer.getEmployeeList();
     }
     
     

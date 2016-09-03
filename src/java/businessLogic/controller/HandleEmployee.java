@@ -5,6 +5,7 @@
  */
 package businessLogic.controller;
 
+import java.util.List;
 import dataAcces.entity.Employee;
 import dataAccess.dao.EmployeeDAO;
 
@@ -32,6 +33,11 @@ public class HandleEmployee {
        } else {
            return "no se pudo crear la cuenta";
        }
+    }
+    
+    public List<Employee> getEmployeeList() {
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        return employeeDAO.findAll();
     }
     
 }

@@ -6,6 +6,7 @@
 package dataAccess.dao;
 
 import dataAcces.entity.Employee;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -83,6 +84,12 @@ public class EmployeeDAO {
             em.close();
         }
         return success;
+    }
+    
+    public List<Employee> findAll() {
+        EntityManager em = emf1.createEntityManager();
+        List<Employee> employees = em.createNamedQuery("Employee.findAll").getResultList();
+        return employees;
     }
 
 }
