@@ -1,10 +1,8 @@
 package businessLogic.controller;
 
 import dataAcces.entity.Customer;
-import dataAccess.dao.UserDAO;
-import dataAcces.entity.User;
 import dataAccess.dao.CustomerDAO;
-import javax.persistence.metamodel.SingularAttribute;
+
 
 /**
  *
@@ -21,11 +19,11 @@ public class HandleCustomer {
 
         CustomerDAO CustomerDAO = new CustomerDAO();
         Customer cx = CustomerDAO.persist(account);
-        if (cx != null)
+        
+        if (cx != null) {
             return "la cuenta cx ha sido creada, su número de cuenta es " + account.getUserid() + ".";
-        else
-            return "la cuenta no pudo ser creada.";  
+        } else {
+            return "la cuenta no pudo ser creada.";
+        }
     }
-
-    
 }

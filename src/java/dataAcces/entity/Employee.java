@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e"),
     @NamedQuery(name = "Employee.findByName", query = "SELECT e FROM Employee e WHERE e.name = :name"),
-    @NamedQuery(name = "Employee.findByRole", query = "SELECT e FROM Employee e WHERE e.role = :role"),
+    @NamedQuery(name = "Employee.findByEmployeeRole", query = "SELECT e FROM Employee e WHERE e.employeeRole = :employeeRole"),
     @NamedQuery(name = "Employee.findBySalary", query = "SELECT e FROM Employee e WHERE e.salary = :salary"),
     @NamedQuery(name = "Employee.findByContractType", query = "SELECT e FROM Employee e WHERE e.contractType = :contractType"),
     @NamedQuery(name = "Employee.findByContractStatus", query = "SELECT e FROM Employee e WHERE e.contractStatus = :contractStatus"),
@@ -37,36 +37,43 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "name")
     private String name;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "role")
-    private String role;
+    @Column(name = "employeeRole")
+    private String employeeRole;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "salary")
     private double salary;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "contractType")
     private String contractType;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
     @Column(name = "contractStatus")
     private String contractStatus;
+    
     @Id
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "User_id")
     private String userid;
+    
     @JoinColumn(name = "User_id", referencedColumnName = "id", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private User user;
@@ -78,10 +85,10 @@ public class Employee implements Serializable {
         this.userid = userid;
     }
 
-    public Employee(String userid, String name, String role, double salary, String contractType, String contractStatus) {
+    public Employee(String userid, String name, String employeeRole, double salary, String contractType, String contractStatus) {
         this.userid = userid;
         this.name = name;
-        this.role = role;
+        this.employeeRole = employeeRole;
         this.salary = salary;
         this.contractType = contractType;
         this.contractStatus = contractStatus;
@@ -95,12 +102,12 @@ public class Employee implements Serializable {
         this.name = name;
     }
 
-    public String getRole() {
-        return role;
+    public String getEmployeeRole() {
+        return employeeRole;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setEmployeeRole(String employeeRole) {
+        this.employeeRole = employeeRole;
     }
 
     public double getSalary() {
@@ -165,7 +172,8 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return "dataAcces.entity.Employee[ userid=" + userid + " ]";
+        //return "dataAcces.entity.Employee[ userid=" + userid + " ]";
+        return "employeeDAO: " + name +" "+ employeeRole +" "+ salary +" "+ contractType +" "+ contractStatus +" "+ userid;
     }
     
 }

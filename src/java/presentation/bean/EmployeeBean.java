@@ -5,6 +5,7 @@
  */
 package presentation.bean;
 
+import businessLogic.controller.HandleEmployee;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -15,16 +16,25 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class EmployeeBean {
+    private String message;
     
     private String name;
-    private String role;
+    private String employeeRole;
     private double salary;
-    private String contractSalary;
+    private String contractType;
     private String contractStatus;
     private String userid;
     
     public EmployeeBean() {
         
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getName() {
@@ -35,12 +45,12 @@ public class EmployeeBean {
         this.name = name;
     }
 
-    public String getRole() {
-        return role;
+    public String getEmployeeRole() {
+        return employeeRole;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setEmployeeRole(String role) {
+        this.employeeRole = role;
     }
 
     public double getSalary() {
@@ -51,12 +61,12 @@ public class EmployeeBean {
         this.salary = salary;
     }
 
-    public String getContractSalary() {
-        return contractSalary;
+    public String getContractType() {
+        return contractType;
     }
 
-    public void setContractSalary(String contractSalary) {
-        this.contractSalary = contractSalary;
+    public void setContractType(String contractType) {
+        this.contractType = contractType;
     }
 
     public String getContractStatus() {
@@ -73,5 +83,10 @@ public class EmployeeBean {
 
     public void setUserid(String userid) {
         this.userid = userid;
+    }
+    
+    public void createEmployee() {
+        HandleEmployee employeeCreator = new HandleEmployee();
+        this.setMessage(employeeCreator.createEmployee(name, employeeRole, salary, contractType, contractStatus, userid));
     }
 }

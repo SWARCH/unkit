@@ -6,6 +6,7 @@
 package presentation.bean;
 
 import businessLogic.controller.*;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -26,9 +27,62 @@ public class UserBean {
     private String id;
     private String username;
     private String password;
+    private String tradeName;
+    private String type;
+    
+    /** Employee properties**/
+    private String name;
+    private String employeeRole;
+    private double salary;
+    private String contractType;
+    private String contractStatus;
+    
+
 
     public UserBean() {
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmployeeRole() {
+        return employeeRole;
+    }
+
+    public void setEmployeeRole(String role) {
+        this.employeeRole = role;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public String getContractType() {
+        return contractType;
+    }
+
+    public void setContractType(String contractType) {
+        this.contractType = contractType;
+    }
+
+    public String getContractStatus() {
+        return contractStatus;
+    }
+
+    public void setContractStatus(String contractStatus) {
+        this.contractStatus = contractStatus;
+    }
+    
+    
 
     public String getId() {
         return id;
@@ -44,6 +98,21 @@ public class UserBean {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+ public String getTradeName() {
+        return tradeName;
+    }
+
+    public void setTradeName(String tradename) {
+        this.tradeName = tradename;
+    }
+    
+     public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getPassword() {
@@ -77,9 +146,25 @@ public class UserBean {
         return "login";
     }
     
-    public void createUser(){
-        HandleUser userCreator = new HandleUser();
-        this.setMessage(userCreator.createUser(username, password, id));
+    public void createAccount(){
+        HandleUser createAccount = new HandleUser();
+        HandleCustomer cx = new HandleCustomer();
+        this.setMessage(createAccount.createUser(username, password, id));
+        this.setMessage(cx.createAccount(id, tradeName, type));
     }
+    
+    public void createEmployee() {
+        System.out.println(this);
+        HandleUser createUser = new HandleUser();
+        HandleEmployee employeeCreator = new HandleEmployee();
+        this.setMessage(createUser.createUser(username, password, id) + 
+                employeeCreator.createEmployee(name, employeeRole, salary, contractType, contractStatus, id));
+    }
+
+    @Override
+    public String toString() {
+        return "userBean: " + username +" "+ id +" "+ name +" "+ salary +" "+ contractStatus +" "+ contractType +" "+  password ;
+    }
+    
     
 }

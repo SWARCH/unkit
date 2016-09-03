@@ -6,13 +6,16 @@
 package dataAccess.dao;
 
 import dataAcces.entity.Employee;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
- * @author mauricio
+ * @author Mauricio
  */
 public class EmployeeDAO {
 
@@ -23,11 +26,17 @@ public class EmployeeDAO {
         EntityManager em = emf1.createEntityManager();
         em.getTransaction().begin();
         try {
+            System.out.println(employee);
             em.persist(employee);
             em.getTransaction().commit();
-        } catch (Exception e) {
+        } catch (ConstraintViolationException e) {
             e.printStackTrace();
             em.getTransaction().rollback();
+            Set<ConstraintViolation<?>> a;
+            a = e.getConstraintViolations();
+            for (ConstraintViolation cv : a) {
+                System.out.println(cv);
+            }
         } finally {
             em.close();
         }

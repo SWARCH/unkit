@@ -54,9 +54,9 @@ public class RoleAuthenticator {
                     //context.getExternalContext().getSessionMap().put(USER_SESSION_KEY, user);
                     EmployeeDAO employeeDAO = new EmployeeDAO();
                     Employee employee = employeeDAO.searchByUserid(id);
-                    if (employee.getRole().equals(MANAGER)) {
+                    if (employee.getEmployeeRole().equals(MANAGER)) {
                         return "manager";
-                    } else if (employee.getRole().equals(MANUFACTURER)) {
+                    } else if (employee.getEmployeeRole().equals(MANUFACTURER)) {
                         return "manufacturer";
                     } else {
                         return "employee";
