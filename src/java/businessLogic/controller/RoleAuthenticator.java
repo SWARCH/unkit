@@ -63,13 +63,13 @@ public class RoleAuthenticator {
                             System.out.println("Esta entrando al manager en roleAUTH " + employee.toString());
                             return "manager";
                         case MANUFACTURER:
-                            return "manufacturer";
+                            return "employee";
                         /*case EMPLOYEE:
                             System.out.println("Esta entrando al employer en roleAUTH " + employee.toString());
                             return "employer";*/
                         
                         default:
-                            return "employer";
+                            return "employee";
                     }
                     //if (employee.getEmployeeRole().equals(MANAGER)) {
                     //    return "manager";
