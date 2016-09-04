@@ -6,8 +6,12 @@
 package presentation.bean;
 
 import businessLogic.controller.HandleCustomer;
+import businessLogic.controller.HandleEmployee;
 import businessLogic.controller.HandleUser;
 import businessLogic.controller.RoleAuthenticator;
+import dataAcces.entity.Customer;
+import dataAcces.entity.Employee;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -19,7 +23,7 @@ import javax.servlet.http.HttpSession;
  */
 
 @ManagedBean
-@ViewScoped
+@ApplicationScoped
 public class CustomerBean {
     
     private String message;
@@ -67,6 +71,17 @@ public class CustomerBean {
     public void createAccount(){
         HandleCustomer createAccount = new HandleCustomer();
         this.setMessage(createAccount.createAccount(id, tradeName, type));
+    }
+    
+    public void customerLoged(){
+        HandleCustomer handleCustomer = new HandleCustomer();
+        Customer customer = handleCustomer.extractCustomer(id);
+        if(customer!=null){
+            setId(customer.getUserid());
+            setTradeName(customer.getTradeName());
+            setType(customer.getType());
+            System.out.println("Hola: "+ tradeName);
+        }
     }
     
     
