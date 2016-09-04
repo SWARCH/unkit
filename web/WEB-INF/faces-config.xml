@@ -24,6 +24,13 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     
+    <managed-bean>
+        <managed-bean-name>vehicleBean</managed-bean-name>
+        <managed-bean-class>presentation.bean.VehicleBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+  
       
     <navigation-rule>
         <navigation-case>
@@ -45,10 +52,10 @@
             <to-view-id>/registration.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
-       <!-- <navigation-case>
-            <from-outcome>Can't find the user</from-outcome>
+       <navigation-case>
+            <from-outcome>update</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
             <redirect/>
-        </navigation-case>-->
+        </navigation-case>
     </navigation-rule>
 </faces-config>

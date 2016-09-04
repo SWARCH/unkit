@@ -12,7 +12,7 @@ and open the template in the editor.
     </head>
     <body>
         <h1><h:outputText value="You're in!!" /></h1>
-            Welcome ${userBean.getUsername()}.
+            Welcome ${employeeBean.name}.
             <h:form>
                 <h:commandButton id="logout" value="Logout" action="#{userBean.logout}"/>
             </h:form>
