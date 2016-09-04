@@ -33,7 +33,29 @@ public class HandlePart {
     }
     
     public String updatePart(String id, String name, String description, double cost) {
-        return "";
+        PartDAO partDAO = new PartDAO();
+        Part candidate = partDAO.searchById(id);
+        
+        
+        candidate.setName(name);
+        candidate.setDescription(description);
+        candidate.setCost(cost);
+        
+        if (candidate == null) {
+            System.out.println("What the hell");
+            
+            return "Error al recuperar datos de la parte";
+        }
+        
+        partDAO.update(candidate);
+        return "Parte recuperada con éxito";
+        
+    }
+    
+    public Part getPartById(String id) {
+        PartDAO partDAO = new PartDAO();
+        Part candidate = partDAO.searchById(id);
+        return candidate;
     }
     
 }

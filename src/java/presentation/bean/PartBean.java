@@ -6,6 +6,7 @@
 package presentation.bean;
 
 import businessLogic.controller.HandlePart;
+import dataAcces.entity.Part;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -86,8 +87,23 @@ public class PartBean {
     }
     
     public void updatePart() {
+        System.out.println(this);
         HandlePart partUpdater = new HandlePart();
         this.setMessage(partUpdater.updatePart(id, name, description, cost));
+        
     }
+    
+    public Part getPartById(String id) {
+        System.out.println(this);
+        HandlePart partBrowser = new HandlePart();
+        return partBrowser.getPartById(id);
+    }
+
+    @Override
+    public String toString() {
+        return id + " " + name+ " " + description + " " + cost;
+    }
+    
+    
     
 }

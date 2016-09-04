@@ -38,6 +38,7 @@ public class EmployeeDAO {
             for (ConstraintViolation cv : a) {
                 System.out.println(cv);
             }
+            return null;
         } finally {
             em.close();
         }

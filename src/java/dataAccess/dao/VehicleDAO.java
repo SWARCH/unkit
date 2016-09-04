@@ -10,6 +10,7 @@ import dataAcces.entity.Vehicle;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 /**
  *
@@ -38,5 +39,20 @@ public class VehicleDAO {
         return v;
     }
 
-    
+    public Vehicle persist(Vehicle newVehicle) {
+        EntityManager em = emf1.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        try {
+            em.persist(newVehicle);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            tx.rollback();
+            return null;
+        } finally {
+            em.close();
+        }
+        return newVehicle;
+    }
 }

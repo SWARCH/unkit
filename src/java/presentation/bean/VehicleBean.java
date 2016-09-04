@@ -25,7 +25,9 @@ import javax.faces.component.html.HtmlInputHidden;
 @ViewScoped
 public class VehicleBean {
 
-    private String message, id, trademark, model, description, color, cost;
+    private String message, id, trademark, description, color;
+    private double cost;
+    private int model;
     private HtmlDataTable dataTable;
     public  Vehicle product = new Vehicle();
     private HtmlInputHidden productId = new HtmlInputHidden();
@@ -57,11 +59,11 @@ public class VehicleBean {
         this.trademark = trademark;
     }
 
-    public String getModel() {
+    public int getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public void setModel(int model) {
         this.model = model;
     }
 
@@ -81,11 +83,11 @@ public class VehicleBean {
         this.color = color;
     }
 
-    public String getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(String cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
     
@@ -115,6 +117,9 @@ public class VehicleBean {
         return message;
     }
     
-    
+    public void createVehicle() {
+        HandleVehicle vehicleCreator = new HandleVehicle();
+        this.setMessage(vehicleCreator.createVehicle(id, trademark, model, description, color, cost));
+    }
     
 }
