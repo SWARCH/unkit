@@ -103,11 +103,11 @@ public class Employee implements Serializable {
     }
 
     public String getEmployeeRole() {
-        return employeeRole;
+        return employeeRole.toUpperCase();
     }
 
     public void setEmployeeRole(String employeeRole) {
-        this.employeeRole = employeeRole;
+        this.employeeRole = employeeRole.toUpperCase();
     }
 
     public double getSalary() {

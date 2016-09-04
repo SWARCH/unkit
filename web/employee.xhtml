@@ -6,33 +6,38 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <head>
-        <title>Datos de empleado</title>
+    <h:head>
+        <title>Empleado</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <h1><h:outputText value="Bienvenido!!" /></h1>
-            
-            <label>Nombre del empleado:</label>
-            <h:outputText value="#{userBean.getUsername()}"/>
-            <br/>
-            
-            <label>Identificación:</label>
-            <h:outputText value="#{userBean.getId()}"/>
-            <br/>
-            
-            <label>Rol:</label>
-            <h:outputText value="#{userBean.getEmployeeRole()}"/>
-            <br/>
-            
-            <label>Salario:</label>
-            <h:outputText value="#{userBean.getSalary()}"/>
-            <br/>
-            
-            <a href="./faces/setEmployeeName.xhtml">Cambiar su nombre</a>
-            
+    </h:head>
+
+    <h:body>
+        <center><h1>
+                #{employeeBean.setUserid(userBean.id)}
+                #{employeeBean.employeeLoged()}
+                Bienvenido  #{employeeBean.name}
+            </h1></center>
+        <center>            
             <h:form>
+                <h2>Datos personales</h2>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Nombre"></h:outputText>
+                    <h:outputText value="#{employeeBean.name}"></h:outputText>
+                    <h:outputText value="Identificación"></h:outputText>
+                    <h:outputText value="#{employeeBean.userid}"></h:outputText>
+                    <h:outputText value="Cargo"></h:outputText>
+                    <h:outputText value="#{employeeBean.employeeRole}"></h:outputText>
+                    <h:outputText value="Salario"></h:outputText>
+                    <h:outputText value="#{employeeBean.salary}"></h:outputText>
+                    <h:outputText value="Tipo de contrato"></h:outputText>
+                    <h:outputText value="#{employeeBean.contractType}"></h:outputText>
+                    <h:outputText value="Estado de contrato"></h:outputText>
+                    <h:outputText value="#{employeeBean.contractStatus}"></h:outputText>
+                </h:panelGrid>
+                <a href="./faces/setEmployeeName.xhtml">Cambiar su nombre</a>
+                <br/>
                 <h:commandButton id="logout" value="Logout" action="#{userBean.logout}"/>
             </h:form>
-    </body>
+        </center>
+    </h:body> 
 </html>
