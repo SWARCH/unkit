@@ -7,12 +7,30 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
     <head>
-        <title>TODO supply a title</title>
+        <title>Datos de empleado</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <h1><h:outputText value="You're in!!" /></h1>
-            Welcome ${userBean.getUsername()}.
+        <h1><h:outputText value="Bienvenido!!" /></h1>
+            
+            <label>Nombre del empleado:</label>
+            <h:outputText value="#{userBean.getUsername()}"/>
+            <br/>
+            
+            <label>Identificación:</label>
+            <h:outputText value="#{userBean.getId()}"/>
+            <br/>
+            
+            <label>Rol:</label>
+            <h:outputText value="#{userBean.getEmployeeRole()}"/>
+            <br/>
+            
+            <label>Salario:</label>
+            <h:outputText value="#{userBean.getSalary()}"/>
+            <br/>
+            
+            <a href="./faces/setEmployeeName.xhtml">Cambiar su nombre</a>
+            
             <h:form>
                 <h:commandButton id="logout" value="Logout" action="#{userBean.logout}"/>
             </h:form>
