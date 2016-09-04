@@ -13,7 +13,11 @@ and open the template in the editor.
     <h:body>
         <!--<f:view>-->
             <h1><h:outputText value="Factory Administration Panel" /></h1>
+<<<<<<< HEAD
             Welcome ${userBean.username}!
+=======
+            Welcome ${userBean.username}!  ${userBean.id}! 
+>>>>>>> refs/remotes/origin/master
             <h:form>
                 <h:commandButton id="logout" value="Logout" action="#{userBean.logout}"/>
             </h:form>

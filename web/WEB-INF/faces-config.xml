@@ -39,10 +39,10 @@
             <redirect/>
         </navigation-case>
         <navigation-case>
-            <from-outcome>employee</from-outcome>
-            <to-view-id>/employee.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
+            <from-outcome>employer</from-outcome>
+            <to-view-id>/management/employer.xhtml</to-view-id>
+            
+        </navigation-case>  
         <navigation-case>
             <from-outcome>manager</from-outcome>
             <to-view-id>/management/manager.xhtml</to-view-id>            

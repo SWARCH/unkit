@@ -47,4 +47,14 @@ public class HandleEmployee {
         employeeDAO.editContractStatus(candidate, "INACTIVE");
     }
     
+    public Employee extractEmployee(String userid){
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        Employee employee = employeeDAO.searchByUserid(userid);
+        
+        if(employee!=null)
+            return employee;
+        else
+            return null;        
+    }
+    
 }
