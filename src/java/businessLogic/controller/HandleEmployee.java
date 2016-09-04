@@ -57,4 +57,15 @@ public class HandleEmployee {
             return null;        
     }
     
+    public void editEmployee(String userid,String userName){
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        Employee employee = employeeDAO.searchByUserid(userid);
+        employeeDAO.editName(employee, userName);
+    }
+    
+    public void quitWork(String userid){
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        Employee employee = employeeDAO.searchByUserid(userid);
+        employeeDAO.editContract(employee, "INACTIVO");
+    }
 }

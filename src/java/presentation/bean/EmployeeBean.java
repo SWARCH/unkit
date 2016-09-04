@@ -106,4 +106,14 @@ public class EmployeeBean {
             System.out.println("Hola: "+ name);
         }
     }
+    
+    public void quitWorkEmployee() {
+        HandleEmployee handleEmployee= new HandleEmployee();
+        handleEmployee.quitWork(userid);
+    }
+    
+    public void editNameEmployee(){
+        HandleEmployee handleEmployee = new HandleEmployee();
+        handleEmployee.editEmployee(userid, name);
+    }
 }

@@ -35,9 +35,11 @@ and open the template in the editor.
                     <h:outputText value="Estado de contrato"></h:outputText>
                     <h:outputText value="#{employeeBean.contractStatus}"></h:outputText>
                 </h:panelGrid>
-                <a href="./faces/setEmployeeName.xhtml">Cambiar su nombre</a>
+                <!--<a href="./faces/setEmployeeName.xhtml">Cambiar su nombre</a>-->
+                <br/>
                 <br/>
                 <h:commandButton id="logout" value="Logout" action="#{userBean.logout}"/>
+                <h:commandButton id="editName" value="Editar" action="editEmployee"/> 
             </h:form>
         </center>
     </h:body> 
