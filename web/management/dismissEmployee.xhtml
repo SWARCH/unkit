@@ -12,6 +12,11 @@
 
         <h1>Despido de empleados</h1>
 
+        <h:form>
+            <label>Introduzca la identificación del empleado: </label>
+            <h:inputText value="#{userBean.id}"></h:inputText>
+            <h:commandButton action="#{userBean.dismissEmployee()}" value="Cancelar contrato"/>
+        </h:form>
         <h:dataTable value="#{userBean.getEmployeeList()}" var="empl" border="1">
 
             <h:column>

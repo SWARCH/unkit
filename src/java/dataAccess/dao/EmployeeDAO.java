@@ -57,15 +57,24 @@ public class EmployeeDAO {
         return employee;
     }
     
-    public void edit(Employee employee) {
+    public boolean editContractStatus(Employee employee, String contractStatus) {
+        System.out.println("edit(): " + employee);
         Employee employeeNew;
+        boolean success = true;
         EntityManager em = emf1.createEntityManager();
         em.getTransaction().begin();
         try {
             employeeNew = em.merge(em.find(Employee.class, employee.getUserid()));
-            employeeNew.setSalary(employee.getSalary());
+            employeeNew.setContractStatus(contractStatus);
+            em.getTransaction().commit();
         } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            success = false;
+        } finally {
+            em.close();
         }
+        return success;
     }
     
     public boolean editSalary(String userid, Double salary) {

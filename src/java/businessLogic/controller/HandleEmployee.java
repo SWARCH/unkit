@@ -40,4 +40,11 @@ public class HandleEmployee {
         return employeeDAO.findAll();
     }
     
+    public void dismiss(String id) {
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        Employee candidate = employeeDAO.searchByUserid(id);
+        System.out.println(candidate);
+        employeeDAO.editContractStatus(candidate, "INACTIVE");
+    }
+    
 }

@@ -172,5 +172,10 @@ public class UserBean {
         return employeeViewer.getEmployeeList();
     }
     
+    public void dismissEmployee() {
+        System.out.println("The ID = " + id);
+        HandleEmployee employeeDismisser = new HandleEmployee();
+        employeeDismisser.dismiss(id);
+    }
     
 }
