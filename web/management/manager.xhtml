@@ -7,19 +7,23 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Pagina de Administracion</title>
+        <title>Página de Administración</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
         <!--<f:view>-->
-            <h1><h:outputText value="Factory Administration Panel" /></h1>
-            Welcome ${userBean.name}!
+            <h1><h:outputText value="Administración" /></h1>
+            Welcome ${userBean.username}!
             <h:form>
                 <h:commandButton id="logout" value="Logout" action="#{userBean.logout}"/>
             </h:form>
             <br/>
             <a href="management/registerEmployee.xhtml">Registrar empleados</a>
             <a href="management/dismissEmployee.xhtml">Despedir empleados</a>
+            <a href="management/registerPart.xhtml">Registrar parte</a>
+            <a href="management/deletePart.xhtml">Retirar parte</a>
+            <a href="management/registerVehicle.xhtml">Registrar vehiculo</a>
+            <a href="management/deleteVehicle.xhtml">Retirar vehiculo</a>
         <!--</f:view>-->
     </h:body>
 </html>
