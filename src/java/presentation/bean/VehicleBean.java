@@ -10,9 +10,7 @@ import dataAcces.entity.Vehicle;
 import dataAccess.dao.VehicleDAO;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
@@ -107,7 +105,6 @@ public class VehicleBean {
     }
 
     public Vehicle getSpecificProduct() {
-        // product = (Vehicle) dataTable.getRowData();
         productId.setValue(product.getId());
 
         return null;
