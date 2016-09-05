@@ -7,20 +7,25 @@ package presentation.bean;
 
 import businessLogic.controller.HandleVehicle;
 import dataAcces.entity.Vehicle;
+import dataAccess.dao.VehicleDAO;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.component.html.HtmlInputHidden;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author VangsPardz
  */
-
 @ManagedBean
 @ViewScoped
 public class VehicleBean {
@@ -29,13 +34,17 @@ public class VehicleBean {
     private double cost;
     private int model;
     private HtmlDataTable dataTable;
-    public  Vehicle product = new Vehicle();
+    public Vehicle product = new Vehicle();
     private HtmlInputHidden productId = new HtmlInputHidden();
-    private List<Vehicle> cart = new ArrayList<Vehicle>(); 
+    private List<Vehicle> cart = new ArrayList<Vehicle>();
+    
+    @ManagedProperty( value = "#{cart}" )
+    Cart myCart;
 
-    public VehicleBean(){
-        
+    public VehicleBean() {
+
     }
+
     public String getMessage() {
         return message;
     }
@@ -43,6 +52,7 @@ public class VehicleBean {
     public void setMessage(String msg) {
         this.message = msg;
     }
+
     public String getId() {
         return id;
     }
@@ -90,36 +100,62 @@ public class VehicleBean {
     public void setCost(double cost) {
         this.cost = cost;
     }
-    
-    
-    public List getProductList(){
-            HandleVehicle v = new HandleVehicle();
-            return v.getProductList();
-        
+
+    public List getProductList() {
+        HandleVehicle v = new HandleVehicle();
+        return v.getProductList();
     }
-    
-    public Vehicle getSpecificProduct(){
-       // product = (Vehicle) dataTable.getRowData();
+
+    public Vehicle getSpecificProduct() {
+        // product = (Vehicle) dataTable.getRowData();
         productId.setValue(product.getId());
-        
+
         return null;
     }
-    
-    public String addToCart(){
-        product = (Vehicle) dataTable.getRowData();
-        cart.add(product);
-        return "update";
-    }
-    
-    public String makeOrder(){
+
+    public String makeOrder() {
         HandleVehicle v = new HandleVehicle();
         this.setMessage(v.order(cart));
         return message;
     }
-    
+
     public void createVehicle() {
         HandleVehicle vehicleCreator = new HandleVehicle();
         this.setMessage(vehicleCreator.createVehicle(id, trademark, model, description, color, cost));
     }
+
+    public String getQuery() {
+        return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("query");
+    }
     
+    public void checkIfQueryExists() {
+        VehicleDAO vehicleDAO = new VehicleDAO();
+        if (vehicleDAO.checkIfQueryExists(getQuery()) == 0) {
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("error.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(VehicleBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else System.out.println("it actually exist!");
+    }
+    
+    public Vehicle getSingleVehicle() {
+        VehicleDAO vehicleDAO = new VehicleDAO();
+        return vehicleDAO.returnVehicle(getQuery());
+    }
+    
+    public void addToCart() {
+        VehicleDAO vehicleDAO = new VehicleDAO();
+        String query = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("query");
+        myCart.add(vehicleDAO.returnVehicle(query));
+    }
+
+    public Cart getMyCart() {
+        return myCart;
+    }
+
+    public void setMyCart(Cart myCart) {
+        this.myCart = myCart;
+    }
+
 }

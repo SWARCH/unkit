@@ -24,6 +24,7 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     
+    
     <managed-bean>
         <managed-bean-name>vehicleBean</managed-bean-name>
         <managed-bean-class>presentation.bean.VehicleBean</managed-bean-class>
@@ -35,18 +36,26 @@
         <managed-bean-class>presentation.bean.PartBean</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>cart</managed-bean-name>
+        <managed-bean-class>presentation.bean.Cart</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    
   
       
     <navigation-rule>
         <navigation-case>
             <from-outcome>login</from-outcome>
             <to-view-id>/login.xhtml</to-view-id>
-            <redirect/>
+            <!--<redirect/>-->>
         </navigation-case>
         <navigation-case>
             <from-outcome>employee</from-outcome>
             <to-view-id>/employee.xhtml</to-view-id>
-            <redirect/>
+            <!--<redirect/>-->
         </navigation-case>
         <navigation-case>
             <from-outcome>manager</from-outcome>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Vehicle</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        #{vehicleBean.checkIfQueryExists()} <br></br>
+
+        <h:outputText id="cartSize" value="Su carrito tiene #{cart.cartCount} items(s)" />
+
+        Description: #{vehicleBean.singleVehicle.description} <br></br>
+        Cost: $#{vehicleBean.singleVehicle.cost} <br></br>
+
+        <h:form id='form'>
+            <input type="hidden" name="query" value="#{vehicleBean.query}"/>
+            <h:commandButton value="Agregar al carrito" action="#{vehicleBean.addToCart()}">
+                <f:ajax execute="@form" render=":cartSize"/>
+            </h:commandButton>
+        </h:form>
+    </h:body>
+</html>

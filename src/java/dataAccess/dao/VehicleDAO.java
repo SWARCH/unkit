@@ -55,4 +55,24 @@ public class VehicleDAO {
         }
         return newVehicle;
     }
+    
+    /**
+     * Check https://www.youtube.com/watch?v=NiG82Ie7dX0
+     * @param query
+     * @return 
+     */
+    public int checkIfQueryExists(String query) {
+        EntityManager em = emf1.createEntityManager();
+        List<Vehicle> vehicles = 
+                em.createQuery("SELECT v FROM Vehicle v WHERE v.trademark = :trademark")
+                        .setParameter("trademark", query).getResultList();
+        return vehicles.size();
+    }
+    
+    public Vehicle returnVehicle(String query) {
+        Vehicle vehicle = (Vehicle) emf1.createEntityManager().createQuery("SELECT v FROM Vehicle v WHERE v.trademark = :trademark").setParameter("trademark", query)
+                .getSingleResult();
+        //System.out.println("inside return v: " + vehicle);
+        return vehicle;
+    }
 }

@@ -82,8 +82,6 @@ public class UserBean {
     public void setContractStatus(String contractStatus) {
         this.contractStatus = contractStatus;
     }
-    
-    
 
     public String getId() {
         return id;
