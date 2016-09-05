@@ -7,10 +7,10 @@ package presentation.bean;
 
 import businessLogic.controller.*;
 import java.util.List;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  * @author mauricio
  */
 @ManagedBean
-@ViewScoped
+@ApplicationScoped
 public class UserBean {
     
     private String message;
@@ -38,9 +38,15 @@ public class UserBean {
     private String contractType;
     private String contractStatus;
     
-
-
+    private String mensaje;
+    private final HttpServletRequest httpServletRequest;
+   private final FacesContext faceContext;
+   private FacesMessage facesMessage;
+    
     public UserBean() {
+        mensaje="";
+        faceContext=FacesContext.getCurrentInstance();
+        httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
     }
 
     public String getName() {
@@ -84,10 +90,12 @@ public class UserBean {
     }
 
     public String getId() {
+        System.out.println("HOLA SOY ID" + id);
         return id;
     }
 
     public void setId(String id) {
+        System.out.println("HOLA SOY ID set" + id);
         this.id = id;
     }
 
@@ -174,6 +182,27 @@ public class UserBean {
         System.out.println("The ID = " + id);
         HandleEmployee employeeDismisser = new HandleEmployee();
         employeeDismisser.dismiss(id);
+    }
+    
+    public String login(){
+        System.out.println("UserBean login: "+ id);
+        
+        LoginController loginUser= new LoginController();
+        
+        if(loginUser.Login(id, password)){
+            httpServletRequest.getSession().setAttribute("sessionUsuario", id);
+            facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO,"Acceso Correcto", null);
+            faceContext.addMessage(null, facesMessage);
+            RoleAuthenticator roleAuthenticator = new RoleAuthenticator();
+            message = roleAuthenticator.validateUser(id, username, password);
+            System.out.println("UserBean login antes de message: "+ id);
+            return message;
+        }else{
+            FacesMessage fm = new FacesMessage("Error de login, verifique información","ERROR MSG");
+            fm.setSeverity(FacesMessage.SEVERITY_ERROR);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+            return "login";
+        }
     }
     
 }

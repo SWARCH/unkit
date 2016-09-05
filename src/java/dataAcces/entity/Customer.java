@@ -76,11 +76,11 @@ public class Customer implements Serializable {
     }
 
     public String getType() {
-        return type;
+        return type.toUpperCase();
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.type = type.toUpperCase();
     }
 
     public String getUserid() {

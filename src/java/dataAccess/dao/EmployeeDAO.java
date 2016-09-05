@@ -96,6 +96,45 @@ public class EmployeeDAO {
         return success;
     }
     
+    public boolean editName(Employee employee, String nameEmployee){
+        System.out.println("HOLA SOY EL EMPLEADO" + employee);
+        Employee newEmployee;
+        boolean success = true;
+        EntityManager em = emf1.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            newEmployee = em.merge(em.find(Employee.class, employee.getUserid()));
+            newEmployee.setName(nameEmployee);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            success = false;
+        } finally {
+            em.close();
+        }
+        return success;
+    }
+    
+    public boolean editContract(Employee employee, String stateContract){
+        Employee newEmployee;
+        boolean success = true;
+        EntityManager em = emf1.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            newEmployee = em.merge(em.find(Employee.class, employee.getUserid()));
+            newEmployee.setContractStatus(stateContract);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            success = false;
+        } finally {
+            em.close();
+        }
+        return success;
+    }
+    
     public List<Employee> findAll() {
         EntityManager em = emf1.createEntityManager();
         List<Employee> employees = em.createNamedQuery("Employee.findAll").getResultList();

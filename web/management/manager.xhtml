@@ -24,6 +24,7 @@ and open the template in the editor.
 
     <h:body>
 
+
         <div class="container">
             
             <!-- Static navbar -->
@@ -82,6 +83,19 @@ and open the template in the editor.
             </div>
 
         </div> <!-- /container -->
+
+
+        <!--<f:view>-->
+            <h1><h:outputText value="Factory Administration Panel" /></h1>
+            Welcome ${userBean.username}!
+            Welcome ${userBean.username}!  ${userBean.id}! 
+            <h:form>
+                <h:commandButton id="logout" value="Logout" action="#{userBean.logout}"/>
+            </h:form>
+            <br/>
+            <a href="management/registerEmployee.xhtml">Registrar empleados</a>
+            <a href="management/dismissEmployee.xhtml">Despedir empleados</a>
+        <!--</f:view>-->
 
     </h:body>
 </html>

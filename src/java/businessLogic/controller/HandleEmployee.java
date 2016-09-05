@@ -44,7 +44,28 @@ public class HandleEmployee {
         EmployeeDAO employeeDAO = new EmployeeDAO();
         Employee candidate = employeeDAO.searchByUserid(id);
         System.out.println(candidate);
-        employeeDAO.editContractStatus(candidate, "INACTIVE");
+        employeeDAO.editContractStatus(candidate, "INACTIVO");
     }
     
+    public Employee extractEmployee(String userid){
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        Employee employee = employeeDAO.searchByUserid(userid);
+        
+        if(employee!=null)
+            return employee;
+        else
+            return null;        
+    }
+    
+    public void editEmployee(String userid,String userName){
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        Employee employee = employeeDAO.searchByUserid(userid);
+        employeeDAO.editName(employee, userName);
+    }
+    
+    public void quitWork(String userid){
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        Employee employee = employeeDAO.searchByUserid(userid);
+        employeeDAO.editContract(employee, "INACTIVO");
+    }
 }

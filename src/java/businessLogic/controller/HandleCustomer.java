@@ -26,4 +26,14 @@ public class HandleCustomer {
             return "la cuenta no pudo ser creada.";
         }
     }
+    
+    public Customer extractCustomer(String userid){
+        CustomerDAO customerDAO = new CustomerDAO();
+        Customer customer = customerDAO.searchByUserid(userid);
+        
+        if(customer!=null)
+            return customer;
+        else
+            return null;        
+    }
 }

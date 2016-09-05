@@ -12,6 +12,7 @@ import dataAccess.dao.CustomerDAO;
 import dataAccess.dao.EmployeeDAO;
 import dataAccess.dao.UserDAO;
 import javax.faces.context.FacesContext;
+import presentation.bean.UserBean;
 
 /**
  * A controller class to find the role of the user.
@@ -27,6 +28,10 @@ public class RoleAuthenticator {
     
     public static final String MANAGER = "MANAGER";
     public static final String MANUFACTURER = "MANUFACTURER";
+    public static final String EMPLOYEE = "EMPLOYEE";
+    
+    public static final String ENSAMBLADORA = "ENSAMBLADORA";
+    public static final String MAYORISTA = "MAYORISTA";
 
     public RoleAuthenticator() {
     }
@@ -40,6 +45,8 @@ public class RoleAuthenticator {
      */
     public String validateUser(String id, String username, String password) {
         //FacesContext context = FacesContext.getCurrentInstance();
+        
+        System.out.println("Validar usuario ROlAuth: " + id);
         UserDAO userDAO = new UserDAO();
         User user = userDAO.searchByID(id);
         
@@ -54,16 +61,41 @@ public class RoleAuthenticator {
                     //context.getExternalContext().getSessionMap().put(USER_SESSION_KEY, user);
                     EmployeeDAO employeeDAO = new EmployeeDAO();
                     Employee employee = employeeDAO.searchByUserid(id);
-                    if (employee.getEmployeeRole().equals(MANAGER)) {
-                        return "manager";
-                    } else if (employee.getEmployeeRole().equals(MANUFACTURER)) {
-                        return "manufacturer";
-                    } else {
-                        return "employee";
+                    switch(employee.getEmployeeRole()){
+                        case MANAGER:
+                            System.out.println("Esta entrando al manager en roleAUTH " + employee.toString());
+                            return "manager";
+                        case MANUFACTURER:
+                            return "employee";
+                        /*case EMPLOYEE:
+                            System.out.println("Esta entrando al employer en roleAUTH " + employee.toString());
+                            return "employer";*/
+                        
+                        default:
+                            return "employee";
                     }
-                    
+                    //if (employee.getEmployeeRole().equals(MANAGER)) {
+                    //    return "manager";
+                    //} else if (employee.getEmployeeRole().equals(MANUFACTURER)) {
+                    //    return "manufacturer";
+                    //} else {
+                    //    return "employe";
+                    //}
                 } else if (isCustomer(id)) {
-                    return "customer";
+                   CustomerDAO cxDAO = new CustomerDAO();
+                    Customer cx = cxDAO.searchByUserid(id);
+                    switch(cx.getType()){
+                        case ENSAMBLADORA:
+                            return "ensambladora";
+                        case MAYORISTA:
+                            return "mayorista";
+                        /*case EMPLOYEE:
+                            System.out.println("Esta entrando al employer en roleAUTH " + employee.toString());
+                            return "employer";*/
+                        
+                        default:
+                            return "verifique sus datos"; // crear clase catalogo xhtml. que permita ver todo
+                    }
                 }
                 return "error-user"; // puede error de llaves 
                                     //if(id.equals(user.getId()) && username.equals(user.getUsername())){
@@ -86,8 +118,9 @@ public class RoleAuthenticator {
         
         EmployeeDAO employeeDAO = new EmployeeDAO();
         Employee employee = employeeDAO.searchByUserid(id);
-        
-        return employee.getUserid().equals(user.getId());
+        if(employee != null)
+         return employee.getUserid().equals(user.getId());
+        else return false;
     }
     
     public boolean isCustomer(String id) {
@@ -97,8 +130,9 @@ public class RoleAuthenticator {
         
         CustomerDAO customerDAO = new CustomerDAO();
         Customer customer = customerDAO.searchByUserid(id);
-        
+        if (customer != null)
         return customer.getUserid().equals(user.getId());
+        else return false;
     }
     
 }

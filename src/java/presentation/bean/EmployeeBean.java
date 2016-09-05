@@ -6,6 +6,8 @@
 package presentation.bean;
 
 import businessLogic.controller.HandleEmployee;
+import dataAcces.entity.Employee;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -14,7 +16,7 @@ import javax.faces.bean.ViewScoped;
  * @author Mauricio
  */
 @ManagedBean
-@ViewScoped
+@ApplicationScoped
 public class EmployeeBean {
     private String message;
     
@@ -88,5 +90,30 @@ public class EmployeeBean {
     public void createEmployee() {
         HandleEmployee employeeCreator = new HandleEmployee();
         this.setMessage(employeeCreator.createEmployee(name, employeeRole, salary, contractType, contractStatus, userid));
+    }
+    
+    public void employeeLoged(){
+        System.out.println("Estoy en employeeLoged" + userid);
+        HandleEmployee handleEmployee = new HandleEmployee();
+        Employee employee = handleEmployee.extractEmployee(userid);
+        if(employee!=null){
+            setUserid(employee.getUserid());
+            setName(employee.getName());
+            setEmployeeRole(employee.getEmployeeRole());
+            setSalary(employee.getSalary());
+            setContractStatus(employee.getContractStatus());
+            setContractType(employee.getContractType());  
+            System.out.println("Hola: "+ name);
+        }
+    }
+    
+    public void quitWorkEmployee() {
+        HandleEmployee handleEmployee= new HandleEmployee();
+        handleEmployee.quitWork(userid);
+    }
+    
+    public void editNameEmployee(){
+        HandleEmployee handleEmployee = new HandleEmployee();
+        handleEmployee.editEmployee(userid, name);
     }
 }
