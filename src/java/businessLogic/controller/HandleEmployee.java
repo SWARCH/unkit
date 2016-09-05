@@ -44,7 +44,7 @@ public class HandleEmployee {
         EmployeeDAO employeeDAO = new EmployeeDAO();
         Employee candidate = employeeDAO.searchByUserid(id);
         System.out.println(candidate);
-        employeeDAO.editContractStatus(candidate, "INACTIVE");
+        employeeDAO.editContractStatus(candidate, "INACTIVO");
     }
     
     public Employee extractEmployee(String userid){

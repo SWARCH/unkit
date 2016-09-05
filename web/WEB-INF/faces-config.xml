@@ -12,6 +12,11 @@
         <managed-bean-scope>request</managed-bean-scope>      
     </managed-bean>
    
+    <navigation-case>
+            <from-outcome>editEmployee</from-outcome>
+            <to-view-id>/editEmployee.xhtml</to-view-id> 
+    </navigation-case>
+   
      <managed-bean>
         <managed-bean-name>userBean</managed-bean-name>
         <managed-bean-class>presentation.bean.UserBean</managed-bean-class>
