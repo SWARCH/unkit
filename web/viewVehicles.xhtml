@@ -3,32 +3,84 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
     <h:head>
         <title>Lista de productos</title>
     </h:head>
-
     <h:body>
+
+        <h1>Lista de Vehiculos</h1>
         <h:form>
-        <!-- Mauricio's data Table -->
-        Mauricio's data table O.o
-        <h:dataTable value="#{vehicleBean.getProductList()}" var="v">
+        <h:dataTable value="#{vehicleBean.getProductList()}" var="product" border="1">
             <h:column>
-                <f:facet name="header"/>
-                <h:outputLink value="vehicle.xhtml">
-                    <f:param name="query" value="#{v.trademark}"/>
-                    <h:outputText value="#{v.cost}"/>
-                </h:outputLink>
+                <f:facet name="header">
+                    ID
+                </f:facet>
+                #{product.id}
             </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    Name
+                </f:facet>
+                #{product.trademark}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                   Model
+                </f:facet>
+                #{product.model}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    Color
+                </f:facet>
+                #{product.color}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Color
+                </f:facet>
+                #{product.cost}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    Cantidad
+                </f:facet>
+               
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    View
+                </f:facet>
+                #{product.description}
+                
+              <h:commandLink value="agregar al carrito}" action="#{vehicleBean.addToCart}">
+
+                    </h:commandLink>
+               <!-- <h:commandLink value="#{product.id}" action="#{vehicleBean.getSpecificProduct()}">
+                    <f:setPropertyActionListener value="#{product}" target  ="#{vehicleBea}" />
+                </h:commandLink> -->
+            </h:column>
+            <h:column>
+                <h:outputText value="#{vehicleBean.message}"/>;
+            </h:column>
+            
         </h:dataTable>
-
-        <h:commandButton id="submit" 
-                         type="submit"
-                         value="Realizar Compra"
-                         action="#{vehicleBean.makeOrder()}"/>
-
-        <h:outputText value="#{vehicleBean.message}"/>;
-        </h:form>
+            
+            <h:commandButton id="submit" 
+                             type="submit"
+                             value="Realizar Compra"
+                             action="#{vehicleBean.makeOrder()}"/>
+                <br/><br/>
+                
+                <h:outputText value="#{vehicleBean.message}"/>;
+    </h:form>
+        
     </h:body>
 
 </html>
