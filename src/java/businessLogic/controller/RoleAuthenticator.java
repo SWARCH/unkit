@@ -48,7 +48,7 @@ public class RoleAuthenticator {
         
         System.out.println("Validar usuario ROlAuth: " + id);
         UserDAO userDAO = new UserDAO();
-        User user = userDAO.searchByID(id);
+        User user = userDAO.searchById(id);
         
         if (user != null) {
             if(id.equals(user.getId()) && username.equals(user.getUsername())){
@@ -114,7 +114,7 @@ public class RoleAuthenticator {
     public boolean isEmployee(String id) {
         // This method needs to be improved for perfomance
         UserDAO userDAO = new UserDAO();
-        User user = userDAO.searchByID(id);
+        User user = userDAO.searchById(id);
         
         EmployeeDAO employeeDAO = new EmployeeDAO();
         Employee employee = employeeDAO.searchByUserid(id);
@@ -126,7 +126,7 @@ public class RoleAuthenticator {
     public boolean isCustomer(String id) {
         // This method needs to be improved for perfomance
         UserDAO userDAO = new UserDAO();
-        User user = userDAO.searchByID(id);
+        User user = userDAO.searchById(id);
         
         CustomerDAO customerDAO = new CustomerDAO();
         Customer customer = customerDAO.searchByUserid(id);

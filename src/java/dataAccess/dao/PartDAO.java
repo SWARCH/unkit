@@ -11,19 +11,23 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
+ * A DAO class for the Part entity.
  * @author Mauricio
  */
 public class PartDAO {
     
-    public EntityManagerFactory emf = 
-            Persistence.createEntityManagerFactory("UNKITPU");
+    public EntityManagerFactory emf;
+    public EntityManager em;
+
+    public PartDAO() {
+        emf = Persistence.createEntityManagerFactory("UNKITPU");
+        em = emf.createEntityManager();
+    }
     
-    public Part persist(Part newPart) {
-        EntityManager em = emf.createEntityManager();
+    public Part persist(Part part) {
         em.getTransaction().begin();
         try {
-            em.persist(newPart);
+            em.persist(part);
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -32,11 +36,10 @@ public class PartDAO {
         } finally {
             em.close();
         }
-        return newPart;
+        return part;
     }
     
     public Part searchById(String id) {
-        EntityManager em = emf.createEntityManager();
         Part part = null;
         try {
             part = em.find(Part.class, id);
@@ -48,14 +51,13 @@ public class PartDAO {
         return part;
     }
     
-    public boolean update(Part part) {
-        Part partNew;
+    public boolean editName(Part part, String name) {
+        Part partE;
         boolean success = true;
-        EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
-            partNew = em.merge(em.find(Part.class, part.getId()));
-            //partNew.setContractStatus(contractStatus);
+            partE = em.merge(em.find(Part.class, part.getId()));
+            partE.setName(name);
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

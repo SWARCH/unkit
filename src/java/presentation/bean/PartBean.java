@@ -86,10 +86,10 @@ public class PartBean {
         this.setMessage(partEliminator.eliminatePart(id));
     }
     
-    public void updatePart() {
+    public void updatePartName() {
         System.out.println(this);
         HandlePart partUpdater = new HandlePart();
-        this.setMessage(partUpdater.updatePart(id, name, description, cost));
+        this.setMessage(partUpdater.updateName(id, name));
         
     }
     

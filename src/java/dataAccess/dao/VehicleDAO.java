@@ -1,59 +1,55 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dataAccess.dao;
 
-import dataAcces.entity.User;
 import dataAcces.entity.Vehicle;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+
 /**
- *
+ * A DAO class for de Vehicle entity.
  * @author VangsPardz
  */
 public class VehicleDAO {
-        public EntityManagerFactory emf1 = 
-            Persistence.createEntityManagerFactory("UNKITPU");
-        
+        public EntityManagerFactory emf;
+        public EntityManager em;
+
+    public VehicleDAO() {
+        emf = Persistence.createEntityManagerFactory("UNKITPU");
+        em = emf.createEntityManager();
+    }
+    
      public List<Vehicle> findAll() {
-        EntityManager v = emf1.createEntityManager();
-        List<Vehicle> vs = v.createNamedQuery("Vehicle.findAll").getResultList();
-        return vs;
+        List<Vehicle> vehicles = em.createNamedQuery("Vehicle.findAll")
+                .getResultList();
+        return vehicles;
     }
      
-     public Vehicle searchByID(String id) {
-        EntityManager em = emf1.createEntityManager();
-        Vehicle v = null;
+     public Vehicle searchById(String id) {
+        Vehicle vehicle = null;
         try {
-            v = em.find(Vehicle.class, id);
+            vehicle = em.find(Vehicle.class, id);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             em.close();
         }
-        return v;
+        return vehicle;
     }
 
-    public Vehicle persist(Vehicle newVehicle) {
-        EntityManager em = emf1.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
+    public Vehicle persist(Vehicle vehicle) {
+        em.getTransaction().begin();
         try {
-            em.persist(newVehicle);
+            em.persist(vehicle);
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
-            tx.rollback();
+            em.getTransaction().rollback();
             return null;
         } finally {
             em.close();
         }
-        return newVehicle;
+        return vehicle;
     }
     
     /**
@@ -62,15 +58,16 @@ public class VehicleDAO {
      * @return 
      */
     public int checkIfQueryExists(String query) {
-        EntityManager em = emf1.createEntityManager();
+        EntityManager em = emf.createEntityManager();
         List<Vehicle> vehicles = 
                 em.createQuery("SELECT v FROM Vehicle v WHERE v.trademark = :trademark")
                         .setParameter("trademark", query).getResultList();
         return vehicles.size();
     }
     
+    // Suspect method. dont't trust it
     public Vehicle returnVehicle(String query) {
-        Vehicle vehicle = (Vehicle) emf1.createEntityManager().createQuery("SELECT v FROM Vehicle v WHERE v.trademark = :trademark").setParameter("trademark", query)
+        Vehicle vehicle = (Vehicle) emf.createEntityManager().createQuery("SELECT v FROM Vehicle v WHERE v.trademark = :trademark").setParameter("trademark", query)
                 .getSingleResult();
         //System.out.println("inside return v: " + vehicle);
         return vehicle;

@@ -37,13 +37,12 @@ public class HandleEmployee {
     
     public List<Employee> getEmployeeList() {
         EmployeeDAO employeeDAO = new EmployeeDAO();
-        return employeeDAO.findAll();
+        return employeeDAO.searchAll();
     }
     
     public void dismiss(String id) {
         EmployeeDAO employeeDAO = new EmployeeDAO();
         Employee candidate = employeeDAO.searchByUserid(id);
-        System.out.println(candidate);
         employeeDAO.editContractStatus(candidate, "INACTIVO");
     }
     
@@ -63,9 +62,7 @@ public class HandleEmployee {
         employeeDAO.editName(employee, userName);
     }
     
-    public void quitWork(String userid){
-        EmployeeDAO employeeDAO = new EmployeeDAO();
-        Employee employee = employeeDAO.searchByUserid(userid);
-        employeeDAO.editContract(employee, "INACTIVO");
+    public void quit(String userid){
+        this.dismiss(userid);
     }
 }

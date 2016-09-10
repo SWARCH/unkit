@@ -32,14 +32,12 @@ public class HandlePart {
         return "";
     }
     
-    public String updatePart(String id, String name, String description, double cost) {
+    public String updateName(String id, String name) {
         PartDAO partDAO = new PartDAO();
         Part candidate = partDAO.searchById(id);
         
         
         candidate.setName(name);
-        candidate.setDescription(description);
-        candidate.setCost(cost);
         
         if (candidate == null) {
             System.out.println("What the hell");
@@ -47,7 +45,7 @@ public class HandlePart {
             return "Error al recuperar datos de la parte";
         }
         
-        partDAO.update(candidate);
+        partDAO.editName(candidate, name);
         return "Parte recuperada con éxito";
         
     }

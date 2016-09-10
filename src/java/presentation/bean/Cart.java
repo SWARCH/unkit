@@ -17,7 +17,7 @@ import javax.faces.bean.*;
  *
  * @author Mauricio
  */
-//@Named(value = "cart")
+@Named(value = "cart")
 @ManagedBean
 @ViewScoped
 public class Cart implements Serializable {

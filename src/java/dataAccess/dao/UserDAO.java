@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dataAccess.dao;
 
 import dataAcces.entity.User;
@@ -11,16 +6,20 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- * A DAO class for the user entity;
+ * A DAO class for the User entity;
  * @author Mauricio
  */
 public class UserDAO {
     
-    public EntityManagerFactory emf = 
-            Persistence.createEntityManagerFactory("UNKITPU");
+    public EntityManagerFactory emf;
+    public EntityManager em;
+
+    public UserDAO() {
+        emf = Persistence.createEntityManagerFactory("UNKITPU");
+        em = emf.createEntityManager();
+    }
     
-    public User searchByID(String id) {
-        EntityManager em = emf.createEntityManager();
+    public User searchById(String id) {
         User user = null;
         try {
             user = em.find(User.class, id);
@@ -33,22 +32,12 @@ public class UserDAO {
     }
     
     public User searchByUsername(String username) {
-        // TODO This method is wrong, DON'T USE IT yet until it is correct.
-        EntityManager em = emf.createEntityManager();
-        User user = null;
-        try {
-            user = em.find(User.class, username);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println(e);
-        } finally {
-            em.close();
-        }
+        User user = (User) em.createNamedQuery("User.findByUsername")
+                .setParameter("username", username).getSingleResult();
         return user;
     }
     
     public User persist(User user) {
-        EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
             em.persist(user);

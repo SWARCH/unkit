@@ -109,7 +109,7 @@ public class EmployeeBean {
     
     public void quitWorkEmployee() {
         HandleEmployee handleEmployee= new HandleEmployee();
-        handleEmployee.quitWork(userid);
+        handleEmployee.quit(userid);
     }
     
     public void editNameEmployee(){
