@@ -5,6 +5,9 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Editar datos personales</title>
+        #{userBean.loged()}
+        Bienvenido #{userBean.id}
+        Usuario #{userBean.username}
     </h:head>
     <h:body>
         <!--Nombre #{employeeBean.name}
@@ -13,22 +16,21 @@
             <h:form>
                 <h2>Actualización de datos personales</h2>
                 <p>Para realizar la actualización por favor ingrese su número de identificación</p>
-                <h:panelGrid columns="3">
-                    <h:outputText value="Identificación"></h:outputText>
-                    <h:inputText id="useridEmployeeText" value="#{employeeBean.userid}" validatorMessage="Debe ingresar su identificaión" >
-                        <f:validateRequired for="useridEmployeeText"></f:validateRequired>
-                    </h:inputText>
-                    <h:message for="useridEmployeeText"></h:message>
-                                        
+                <h:panelGrid columns="3">                  
                     <h:outputText value="Nombre"></h:outputText>
                     <h:inputText id="nameEmployeeText" value="#{employeeBean.name}"  ></h:inputText>
                     <h:commandButton id="save" value="Editar" action="${employeeBean.editNameEmployee()}"/>
                     
                 </h:panelGrid>
                 <h:commandButton id="quitWork" value="Renunciar" action="#{employeeBean.quitWorkEmployee()}"/>
-                <h:commandButton id="back" value="Regresar" action="#{userBean.logout}"/>
+                <h:commandButton id="back" value="Regresar" action="employee"/>
             </h:form>
         </center>
     </h:body>
 </html>
 
+<!--<h:outputText value="Identificación"></h:outputText>
+                    <h:inputText id="useridEmployeeText" value="#{employeeBean.userid}" validatorMessage="Debe ingresar su identificaión" >
+                        <f:validateRequired for="useridEmployeeText"></f:validateRequired>
+                    </h:inputText>
+                    <h:message for="useridEmployeeText"></h:message>-->

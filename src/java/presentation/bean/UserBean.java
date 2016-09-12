@@ -6,6 +6,8 @@
 package presentation.bean;
 
 import businessLogic.controller.*;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import dataAcces.entity.User;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
@@ -14,39 +16,47 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- * <p>A simple managed bean to mediate between the user and 
- * the <code>RoleAuthenticator</code>.</p>
+ * <p>
+ * A simple managed bean to mediate between the user and the
+ * <code>RoleAuthenticator</code>.</p>
+ *
  * @author mauricio
  */
 @ManagedBean
 @ApplicationScoped
 public class UserBean {
-    
+
     private String message;
-    
-    /** <p>User properties.</p> */
+
+    /**
+     * <
+     * p>
+     * User properties.</p>
+     */
     private String id;
     private String username;
     private String password;
     private String tradeName;
     private String type;
-    
-    /** Employee properties**/
+
+    /**
+     * Employee properties*
+     */
     private String name;
     private String employeeRole;
     private double salary;
     private String contractType;
     private String contractStatus;
-    
+
     private String mensaje;
     private final HttpServletRequest httpServletRequest;
-   private final FacesContext faceContext;
-   private FacesMessage facesMessage;
-    
+    private final FacesContext faceContext;
+    private FacesMessage facesMessage;
+
     public UserBean() {
-        mensaje="";
-        faceContext=FacesContext.getCurrentInstance();
-        httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
+        mensaje = "";
+        faceContext = FacesContext.getCurrentInstance();
+        httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
     }
 
     public String getName() {
@@ -90,12 +100,10 @@ public class UserBean {
     }
 
     public String getId() {
-        System.out.println("HOLA SOY ID" + id);
         return id;
     }
 
     public void setId(String id) {
-        System.out.println("HOLA SOY ID set" + id);
         this.id = id;
     }
 
@@ -106,15 +114,16 @@ public class UserBean {
     public void setUsername(String username) {
         this.username = username;
     }
- public String getTradeName() {
+
+    public String getTradeName() {
         return tradeName;
     }
 
     public void setTradeName(String tradename) {
         this.tradeName = tradename;
     }
-    
-     public String getType() {
+
+    public String getType() {
         return type;
     }
 
@@ -129,80 +138,89 @@ public class UserBean {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-     public String getMessage() {
+
+    public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
     }
-    
+
     public String validateUser() {
-        RoleAuthenticator roleAuthenticator = new RoleAuthenticator();
-        message = roleAuthenticator.validateUser(id, username, password);
+        User userLoged = new User();
+        userLoged = (User) httpServletRequest.getSession().getAttribute("sessionUser");
+        LoginController roleAuthenticator = new LoginController();
+        message = roleAuthenticator.validateUser(userLoged.getId());
         return message;
     }
-    
+
     public String logout() {
-        HttpSession session = (HttpSession)
-             FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         if (session != null) {
             session.invalidate();
         }
         return "login";
     }
-    
-    public void createAccount(){
+
+    public void createAccount() {
         HandleUser createAccount = new HandleUser();
         HandleCustomer cx = new HandleCustomer();
         this.setMessage(createAccount.createUser(username, password, id));
         this.setMessage(cx.createAccount(id, tradeName, type));
     }
-    
+
     public void createEmployee() {
         System.out.println(this);
         HandleUser createUser = new HandleUser();
         HandleEmployee employeeCreator = new HandleEmployee();
-        this.setMessage(createUser.createUser(username, password, id) + 
-                employeeCreator.createEmployee(name, employeeRole, salary, contractType, contractStatus, id));
+        this.setMessage(createUser.createUser(username, password, id)
+                + employeeCreator.createEmployee(name, employeeRole, salary, contractType, contractStatus, id));
     }
 
     @Override
     public String toString() {
-        return "userBean: " + username +" "+ id +" "+ name +" "+ salary +" "+ contractStatus +" "+ contractType +" "+  password ;
+        return "userBean: " + username + " " + id + " " + name + " " + salary + " " + contractStatus + " " + contractType + " " + password;
     }
-    
+
     public List getEmployeeList() {
         HandleEmployee employeeViewer = new HandleEmployee();
         return employeeViewer.getEmployeeList();
     }
-    
+
     public void dismissEmployee() {
         System.out.println("The ID = " + id);
         HandleEmployee employeeDismisser = new HandleEmployee();
         employeeDismisser.dismiss(id);
     }
-    
-    public String login(){
-        System.out.println("UserBean login: "+ id);
-        
-        LoginController loginUser= new LoginController();
-        
-        if(loginUser.Login(id, password)){
-            httpServletRequest.getSession().setAttribute("sessionUsuario", id);
-            facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO,"Acceso Correcto", null);
-            faceContext.addMessage(null, facesMessage);
-            RoleAuthenticator roleAuthenticator = new RoleAuthenticator();
-            message = roleAuthenticator.validateUser(id, username, password);
-            System.out.println("UserBean login antes de message: "+ id);
+
+    public String getRespuesta() {
+        if (username != null && password != null) {
+            return "<p>Usuario: " + username + "<br/>Contraseña:" + password + "</p>";
+        }
+        return "";
+    }
+
+    public String login() {
+        LoginController loginUser = new LoginController();
+        if (loginUser.Login(username, password) != null) {
+            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            User userLogin = loginUser.Login(username, password);
+            System.out.println ("HOLA TOY EN LOGIN: " + userLogin.getId());
+            httpServletRequest.getSession().setAttribute("sessionUser", userLogin);
+            LoginController roleAuthenticator = new LoginController();
+            message = roleAuthenticator.validateUser(userLogin.getId());
             return message;
-        }else{
-            FacesMessage fm = new FacesMessage("Error de login, verifique información","ERROR MSG");
-            fm.setSeverity(FacesMessage.SEVERITY_ERROR);
-            FacesContext.getCurrentInstance().addMessage(null, fm);
-            return "login";
+        } else {
+            System.out.println("Algo murio :(");
+            return "formulario";
         }
     }
-    
+
+    public void loged() {
+        User userLoged = new User();
+        userLoged = (User) httpServletRequest.getSession().getAttribute("sessionUser");
+        setId(userLoged.getId());
+        setUsername(userLoged.getUsername());
+    }
 }

@@ -7,9 +7,12 @@ package presentation.bean;
 
 import businessLogic.controller.HandleEmployee;
 import dataAcces.entity.Employee;
+import dataAcces.entity.User;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -27,8 +30,12 @@ public class EmployeeBean {
     private String contractStatus;
     private String userid;
     
+    private final FacesContext faceContext;
+    private final HttpServletRequest httpServletRequest;
+    
     public EmployeeBean() {
-        
+        faceContext = FacesContext.getCurrentInstance();
+        httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
     }
 
     public String getMessage() {
@@ -113,7 +120,9 @@ public class EmployeeBean {
     }
     
     public void editNameEmployee(){
+        User userLoged = new User();
+        userLoged = (User) httpServletRequest.getSession().getAttribute("sessionUser");
         HandleEmployee handleEmployee = new HandleEmployee();
-        handleEmployee.editEmployee(userid, name);
+        handleEmployee.editEmployee(userLoged.getId(), name);
     }
 }

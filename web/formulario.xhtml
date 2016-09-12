@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Login</title>
+    </h:head>
+    <h:body>
+        <center><h1>Login</h1></center>
+        <center>
+            <h:form>
+                <h2>Entrar</h2>
+                <p>Rellena la información correctamente.</p>
+                <h:panelGrid columns="3">
+                    <h:outputText value="Usuario"></h:outputText>
+                    <h:inputText id="usuarioInputText" value="#{userBean.username}" required="true" requiredMessage="El nombre de ususario es obligatorio." validatorMessage="La longitud mínima del usuario debe ser de 8 caracteres.">
+                        <f:validateLength minimum="3"></f:validateLength>
+                    </h:inputText>
+                    <h:message for="usuarioInputText"></h:message>
+                    
+                    <h:outputText value="Contraseña"></h:outputText>
+                    <h:inputText id="passwordInputText" value="#{userBean.password}" required="true" requiredMessage="La contraseña es obligatoria." validatorMessage="La contraseña debe ser de 10 caracteres.">
+                        <f:validateLength minimum="5" maximum="5"></f:validateLength> 
+                    </h:inputText>
+                    <h:message for="passwordInputText"></h:message>
+                </h:panelGrid>
+                <h:commandButton value="Iniciar Sesion" action="#{userBean.login()}"></h:commandButton>
+                <a href="./usuario.xhtml">USUARIO</a>
+                <br />
+                <h:outputText escape="false" value="#{userBean.respuesta}"></h:outputText>
+            </h:form>
+        </center>
+    </h:body>
+</html>
+
+

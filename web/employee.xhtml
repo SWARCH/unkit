@@ -14,6 +14,9 @@ and open the template in the editor.
 
     <h:body>
         <center><h1>
+                #{userBean.loged()}
+                Bienvenido #{userBean.id}
+                Usuario #{userBean.username}
                 #{employeeBean.setUserid(userBean.id)}
                 #{employeeBean.employeeLoged()}
                 Bienvenido  #{employeeBean.name}
