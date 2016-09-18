@@ -15,8 +15,6 @@ and open the template in the editor.
     <h:body>
         <center><h1>
                 #{userBean.loged()}
-                Bienvenido #{userBean.id}
-                Usuario #{userBean.username}
                 #{employeeBean.setUserid(userBean.id)}
                 #{employeeBean.employeeLoged()}
                 Bienvenido  #{employeeBean.name}
@@ -24,26 +22,37 @@ and open the template in the editor.
         <center>            
             <h:form>
                 <h2>Datos personales</h2>
-                <h:panelGrid columns="2">
+                <h:panelGrid columns="3">
                     <h:outputText value="Nombre"></h:outputText>
-                    <h:outputText value="#{employeeBean.name}"></h:outputText>
+                    <h:inputText id="nameEmployeeText" value="#{employeeBean.name}"></h:inputText>
+                    <h:commandButton id="save" value="Editar" action="${employeeBean.editNameEmployee()}"/>
+                    
                     <h:outputText value="Identificación"></h:outputText>
                     <h:outputText value="#{employeeBean.userid}"></h:outputText>
+                    <h:outputText value=""></h:outputText>
+                    
                     <h:outputText value="Cargo"></h:outputText>
                     <h:outputText value="#{employeeBean.employeeRole}"></h:outputText>
+                    <h:outputText value=""></h:outputText>
+                    
                     <h:outputText value="Salario"></h:outputText>
                     <h:outputText value="#{employeeBean.salary}"></h:outputText>
+                    <h:outputText value=""></h:outputText>
+                    
                     <h:outputText value="Tipo de contrato"></h:outputText>
                     <h:outputText value="#{employeeBean.contractType}"></h:outputText>
-                    <h:outputText value="Estado de contrato"></h:outputText>
+                    <h:outputText value=""></h:outputText>
+                    
+                    <h:outputText value="Estado de contrato     "></h:outputText>
                     <h:outputText value="#{employeeBean.contractStatus}"></h:outputText>
+                    <h:commandButton id="quitWork" value="Renunciar" action="#{employeeBean.quitWorkEmployee()}"/>
                 </h:panelGrid>
                 <!--<a href="./faces/setEmployeeName.xhtml">Cambiar su nombre</a>-->
                 <br/>
                 <br/>
                 <h:commandButton id="logout" value="Logout" action="#{userBean.logout}"/>
-                <h:commandButton id="editName" value="Editar" action="editEmployee"/> 
+                <h:commandButton id="editName" value="Editar contraseña" action="editEmployee"/> 
             </h:form>
         </center>
-    </h:body> 
+    </h:body>
 </html>

@@ -38,7 +38,9 @@ public class UserBean {
     private String password;
     private String tradeName;
     private String type;
-
+    
+    private String passwordB;
+    private String passwordC;
     /**
      * Employee properties*
      */
@@ -138,6 +140,22 @@ public class UserBean {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public String getPasswordB() {
+        return passwordB;
+    }
+
+    public void setPasswordB(String passwordB) {
+        this.passwordB = passwordB;
+    }
+
+    public String getPasswordC() {
+        return passwordC;
+    }
+
+    public void setPasswordC(String passwordC) {
+        this.passwordC = passwordC;
+    }
 
     public String getMessage() {
         return message;
@@ -194,6 +212,22 @@ public class UserBean {
         employeeDismisser.dismiss(id);
     }
 
+    public void editPassword() {
+        System.out.println("Yo soy la B: " + passwordB);
+        System.out.println("Yo soy la C: " + passwordC);
+        if (passwordB.equals(passwordC)) {
+            User userLoged = new User();
+            userLoged = (User) httpServletRequest.getSession().getAttribute("sessionUser");
+            HandleUser handleUser = new HandleUser();
+            handleUser.editPassword(userLoged.getId(), passwordB);
+            message = "Se ha cambiado la contraseña";
+        }else{
+            message = "No coinciden las contraseñas, intente de nuevo";
+        }
+        
+
+    }
+
     public String getRespuesta() {
         if (username != null && password != null) {
             return "<p>Usuario: " + username + "<br/>Contraseña:" + password + "</p>";
@@ -221,5 +255,6 @@ public class UserBean {
         userLoged = (User) httpServletRequest.getSession().getAttribute("sessionUser");
         setId(userLoged.getId());
         setUsername(userLoged.getUsername());
+        setPassword(userLoged.getPassword());
     }
 }

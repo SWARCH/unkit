@@ -100,23 +100,25 @@ public class EmployeeBean {
     }
     
     public void employeeLoged(){
-        System.out.println("Estoy en employeeLoged" + userid);
+        User userLoged = new User();
+        userLoged = (User) httpServletRequest.getSession().getAttribute("sessionUser");
         HandleEmployee handleEmployee = new HandleEmployee();
-        Employee employee = handleEmployee.extractEmployee(userid);
+        Employee employee = handleEmployee.extractEmployee(userLoged.getId());
         if(employee!=null){
             setUserid(employee.getUserid());
             setName(employee.getName());
             setEmployeeRole(employee.getEmployeeRole());
             setSalary(employee.getSalary());
             setContractStatus(employee.getContractStatus());
-            setContractType(employee.getContractType());  
-            System.out.println("Hola: "+ name);
+            setContractType(employee.getContractType()); 
         }
     }
     
     public void quitWorkEmployee() {
+        User userLoged = new User();
+        userLoged = (User) httpServletRequest.getSession().getAttribute("sessionUser");
         HandleEmployee handleEmployee= new HandleEmployee();
-        handleEmployee.quitWork(userid);
+        handleEmployee.quitWork(userLoged.getId());
     }
     
     public void editNameEmployee(){

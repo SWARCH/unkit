@@ -67,5 +67,5 @@ public class HandleEmployee {
         EmployeeDAO employeeDAO = new EmployeeDAO();
         Employee employee = employeeDAO.searchByUserid(userid);
         employeeDAO.editContract(employee, "INACTIVO");
-    }
+    } 
 }

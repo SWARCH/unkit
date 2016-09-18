@@ -36,13 +36,11 @@ public class UserDAO {
     }
 
     public User searchByUsername(String username) {
-        // TODO This method is wrong, DON'T USE IT yet until it is correct.
         EntityManager em = emf.createEntityManager();
         User user = null;
         Query q = em.createNamedQuery("User.findByUsername");
         q.setParameter("username",username);
         try {
-            //user = em.find(User.class, username);
             user = (User) q.getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,5 +64,24 @@ public class UserDAO {
             em.close();
         }
         return user;
+    }
+    
+    public boolean editPassword(User user, String passW) {
+        User userEdit;
+        boolean success = true;
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            userEdit = em.merge(em.find(User.class, user.getId()));
+            userEdit.setPassword(passW);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            success = false;
+        } finally {
+            em.close();
+        }
+        return success;
     }
 }

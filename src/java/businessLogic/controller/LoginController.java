@@ -28,7 +28,6 @@ public class LoginController {
     public static final String MAYORISTA = "MAYORISTA";
 
     public User Login(String id, String passW) {
-
         UserDAO usuarioDAO = new UserDAO();
         if (usuarioDAO.searchByUsername(id) != null) {
             User usuario = new User();

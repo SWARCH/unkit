@@ -59,7 +59,6 @@ public class EmployeeDAO {
     }
     
     public boolean editContractStatus(Employee employee, String contractStatus) {
-        System.out.println("edit(): " + employee);
         Employee employeeNew;
         boolean success = true;
         EntityManager em = emf1.createEntityManager();
@@ -97,7 +96,6 @@ public class EmployeeDAO {
     }
     
     public boolean editName(Employee employee, String nameEmployee){
-        System.out.println("HOLA SOY EL EMPLEADO" + employee);
         Employee newEmployee;
         boolean success = true;
         EntityManager em = emf1.createEntityManager();

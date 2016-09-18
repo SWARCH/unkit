@@ -24,4 +24,9 @@ public class HandleUser {
             return "la cuenta no pudo ser creada.";  
     }
     
+    public void editPassword(String userid,String passW){
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.searchByID(userid);
+        userDAO.editPassword(user, passW);
+    }
 }
