@@ -178,7 +178,7 @@ public class UserBean {
         if (session != null) {
             session.invalidate();
         }
-        return "login";
+        return "formulario";
     }
 
     public void createAccount() {

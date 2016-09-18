@@ -7,11 +7,11 @@
         <title>Login</title>
     </h:head>
     <h:body>
-        <center><h1>Login</h1></center>
+        <center><h1>UNKIT</h1></center>
         <center>
             <h:form>
-                <h2>Entrar</h2>
-                <p>Rellena la información correctamente.</p>
+                <h2>Fabrica CKD</h2>
+                <p>Inicie sesión para acceder a UNKIT</p>
                 <h:panelGrid columns="3">
                     <h:outputText value="Usuario"></h:outputText>
                     <h:inputText id="usuarioInputText" value="#{userBean.username}" required="true" requiredMessage="Ingrese su nombre de ususario" validatorMessage="Verifique su nombre de usuario">
@@ -26,9 +26,14 @@
                     <h:message for="passwordInputText"></h:message>
                 </h:panelGrid>
                 <br />
+                <center>
+                    <h:commandButton value="Iniciar Sesión" action="#{userBean.login()}"></h:commandButton>
+                </center>
                 <br />
-                <h:commandButton value="Iniciar Sesion" action="#{userBean.login()}"></h:commandButton>
+                <br />
+                <h:commandButton value="Registrarse" action="registration"></h:commandButton>
                 <h:commandButton value="Regresar" action="index"></h:commandButton>
+
                 <br />
                 <br />
                 <h:outputText escape="false" value="#{userBean.message}"></h:outputText>
