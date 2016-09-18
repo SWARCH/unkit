@@ -5,20 +5,15 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Editar datos personales</title>
+        <title>Editar contraseña</title>
         #{userBean.loged()}
-        Bienvenido #{userBean.id}
-        Usuario #{userBean.username}
-        Password #{userBean.password}
     </h:head>
     <h:body>
         #{employeeBean.employeeLoged()}
-        #{employeeBean.name}
-        <!--Nombre #{employeeBean.name}
-        Usuario #{userBean.username}-->
         <center>            
             <h:form>
-                <h2>Actualización de datos personales</h2>
+                <h2>Editar contraseña</h2>
+                <p>#{employeeBean.name}</p>
                 <h:panelGrid columns="2">                  
                     <h:outputText value="Nueva contraseña"></h:outputText>
                     <h:inputSecret id="passNew" value="#{userBean.passwordB}"></h:inputSecret>
@@ -36,9 +31,3 @@
         </center>
     </h:body>
 </html>
-
-<!--<h:outputText value="Identificación"></h:outputText>
-                    <h:inputText id="useridEmployeeText" value="#{employeeBean.userid}" validatorMessage="Debe ingresar su identificaión" >
-                        <f:validateRequired for="useridEmployeeText"></f:validateRequired>
-                    </h:inputText>
-                    <h:message for="useridEmployeeText"></h:message>-->
