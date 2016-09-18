@@ -20,15 +20,16 @@
                     <h:message for="usuarioInputText"></h:message>
                     
                     <h:outputText value="Contraseña"></h:outputText>
-                    <h:inputText id="passwordInputText" value="#{userBean.password}" required="true" requiredMessage="La contraseña es obligatoria." validatorMessage="La contraseña debe ser de 10 caracteres.">
-                        <f:validateLength minimum="5" maximum="5"></f:validateLength> 
-                    </h:inputText>
+                    <h:inputSecret id="passwordInputText" value="#{userBean.password}" required="true" requiredMessage="La contraseña es obligatoria." validatorMessage="La contraseña debe ser de 10 caracteres.">
+                        <f:validateLength minimum="5" maximum="10"></f:validateLength> 
+                    </h:inputSecret>
                     <h:message for="passwordInputText"></h:message>
                 </h:panelGrid>
                 <h:commandButton value="Iniciar Sesion" action="#{userBean.login()}"></h:commandButton>
-                <a href="./usuario.xhtml">USUARIO</a>
+                <h:commandButton value="Regresar" action="index"></h:commandButton>
                 <br />
-                <h:outputText escape="false" value="#{userBean.respuesta}"></h:outputText>
+                <br />
+                <h:outputText escape="false" value="#{userBean.message}"></h:outputText>
             </h:form>
         </center>
     </h:body>

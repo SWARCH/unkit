@@ -206,13 +206,12 @@ public class UserBean {
         if (loginUser.Login(username, password) != null) {
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
             User userLogin = loginUser.Login(username, password);
-            System.out.println ("HOLA TOY EN LOGIN: " + userLogin.getId());
             httpServletRequest.getSession().setAttribute("sessionUser", userLogin);
             LoginController roleAuthenticator = new LoginController();
             message = roleAuthenticator.validateUser(userLogin.getId());
             return message;
         } else {
-            System.out.println("Algo murio :(");
+            message = "Verifique su usuario y contraseña";
             return "formulario";
         }
     }
