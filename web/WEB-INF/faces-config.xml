@@ -69,9 +69,12 @@
         </navigation-case>
         <navigation-case>
             <from-outcome>employee</from-outcome>
-            <to-view-id>/employee.xhtml</to-view-id>
-
-        </navigation-case>  
+            <to-view-id>/employeeRol/employee.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editEmployee</from-outcome>
+            <to-view-id>/employeeRol/editEmployee.xhtml</to-view-id>
+        </navigation-case>   
         <navigation-case>
             <from-outcome>mayorista</from-outcome>
             <to-view-id>/customerMayorista.xhtml</to-view-id>
@@ -93,7 +96,7 @@
             <redirect/>
         </navigation-case>
        <navigation-case>
-            <from-outcome>update</from-outcome>
+            <from-outcome>index</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
