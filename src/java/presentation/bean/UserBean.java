@@ -38,7 +38,7 @@ public class UserBean {
     private String password;
     private String tradeName;
     private String type;
-    
+
     private String passwordB;
     private String passwordC;
     /**
@@ -140,7 +140,7 @@ public class UserBean {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getPasswordB() {
         return passwordB;
     }
@@ -171,14 +171,6 @@ public class UserBean {
         LoginController roleAuthenticator = new LoginController();
         message = roleAuthenticator.validateUser(userLoged.getId());
         return message;
-    }
-
-    public String logout() {
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
-        return "formulario";
     }
 
     public void createAccount() {
@@ -221,10 +213,9 @@ public class UserBean {
             HandleUser handleUser = new HandleUser();
             handleUser.editPassword(userLoged.getId(), passwordB);
             message = "Se ha cambiado la contraseña";
-        }else{
+        } else {
             message = "No coinciden las contraseñas, intente de nuevo";
         }
-        
 
     }
 
@@ -245,8 +236,8 @@ public class UserBean {
             message = roleAuthenticator.validateUser(userLogin.getId());
             return message;
         } else {
-            message = "Verifique su usuario y contraseña";
-            return "formulario";
+            message = "Verifique su usuario y contraseña.";
+            return "index";
         }
     }
 
@@ -256,5 +247,13 @@ public class UserBean {
         setId(userLoged.getId());
         setUsername(userLoged.getUsername());
         setPassword(userLoged.getPassword());
+    }
+
+    public String logout() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return "index";
     }
 }
