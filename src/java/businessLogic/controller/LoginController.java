@@ -52,9 +52,9 @@ public class LoginController {
                     System.out.println("Esta entrando al manager en roleAUTH " + employee.toString());
                     return "manager";
                 case MANUFACTURER:
-                    return "employee";
+                    return "indexEmployee";
                 default:
-                    return "employee";
+                    return "indexEmployee";
             }
         } else if (isCustomer(id)) {
             CustomerDAO cxDAO = new CustomerDAO();

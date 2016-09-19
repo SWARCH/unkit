@@ -30,9 +30,6 @@ and open the template in the editor.
         <div class="container">
             
             <!-- Static navbar -->
-            <div class="container">
-            
-            <!-- Static navbar -->
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -62,51 +59,10 @@ and open the template in the editor.
                 <h1>Bienvenido #{employeeBean.name}</h1>
                 <p>En esta página podrá ver sus datos personales.</p>
                 <p>
-                    <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">Ingresar</a>
+                    <a class="btn btn-lg btn-primary" href="employeeRol/employee.xhtml" role="button">Ingresar</a>
                 </p>
             </div>
 
         </div> <!-- /container -->
-        
-        <center><h1>
-                #{userBean.loged()}
-                #{employeeBean.employeeLoged()}
-                Bienvenido  #{employeeBean.name}
-            </h1></center>
-        <center>            
-            <h:form>
-                <h2>Datos personales</h2>
-                <h:panelGrid columns="3">
-                    <h:outputText value="Nombre"></h:outputText>
-                    <h:inputText id="nameEmployeeText" value="#{employeeBean.name}"></h:inputText>
-                    <h:commandButton id="save" value="Editar" action="${employeeBean.editNameEmployee()}"/>
-                    
-                    <h:outputText value="Identificación"></h:outputText>
-                    <h:outputText value="#{employeeBean.userid}"></h:outputText>
-                    <h:outputText value=""></h:outputText>
-                    
-                    <h:outputText value="Cargo"></h:outputText>
-                    <h:outputText value="#{employeeBean.employeeRole}"></h:outputText>
-                    <h:outputText value=""></h:outputText>
-                    
-                    <h:outputText value="Salario"></h:outputText>
-                    <h:outputText value="#{employeeBean.salary}"></h:outputText>
-                    <h:outputText value=""></h:outputText>
-                    
-                    <h:outputText value="Tipo de contrato"></h:outputText>
-                    <h:outputText value="#{employeeBean.contractType}"></h:outputText>
-                    <h:outputText value=""></h:outputText>
-                    
-                    <h:outputText value="Estado de contrato     "></h:outputText>
-                    <h:outputText value="#{employeeBean.contractStatus}"></h:outputText>
-                    <h:commandButton id="quitWork" value="Renunciar" action="#{employeeBean.quitWorkEmployee()}"/>
-                </h:panelGrid>
-                <!--<a href="./faces/setEmployeeName.xhtml">Cambiar su nombre</a>-->
-                <br/>
-                <br/>
-                <h:commandButton id="logout" value="Logout" action="#{userBean.logout}"/>
-                <h:commandButton id="editName" value="Editar contraseña" action="editEmployee"/> 
-            </h:form>
-        </center>
     </h:body>
 </html>
