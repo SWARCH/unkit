@@ -20,40 +20,41 @@ and open the template in the editor.
 
         <!-- Custom styles for this template -->
         <link href="navbar.css" rel="stylesheet"></link>
-        
+
         <title>Empleado</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
 
     <h:body>
-        
+
         <div class="container">
-            
+
             <!-- Static navbar -->
             <div class="container">
-            
-            <!-- Static navbar -->
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">UN-KIT Solutions, Ltd.</a>
+
+                <!-- Static navbar -->
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">UN-KIT Solutions, Ltd.</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="employeeRol/indexEmployee.xhtml">Inicio</a></li>
+                                <li><a href="employeeRol/employee.xhtml">Datos personales</a></li>
+                                <li><a href="employeeRol/editEmployee.xhtml">Cambiar contraseña</a></li>
+                                <li><a href="employeeRol/indexEmployee.xhtml">Cerrar sesión</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="employeeRol/indexEmployee.xhtml">Inicio</a></li>
-                            <li><a href="employeeRol/employee.xhtml">Datos personales</a></li>
-                            <li><a href="employeeRol/editEmployee.xhtml">Cambiar contraseña</a></li>
-                            <li><a href="employeeRol/indexEmployee.xhtml">Cerrar sesión</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
 
             <!-- Main component for a primary marketing message or call to action -->
             <div class="jumbotron">
@@ -67,7 +68,7 @@ and open the template in the editor.
             </div>
 
         </div> <!-- /container -->
-        
+
         <center><h1>
                 #{userBean.loged()}
                 #{employeeBean.employeeLoged()}
@@ -80,23 +81,23 @@ and open the template in the editor.
                     <h:outputText value="Nombre"></h:outputText>
                     <h:inputText id="nameEmployeeText" value="#{employeeBean.name}"></h:inputText>
                     <h:commandButton id="save" value="Editar" action="${employeeBean.editNameEmployee()}"/>
-                    
+
                     <h:outputText value="Identificación"></h:outputText>
                     <h:outputText value="#{employeeBean.userid}"></h:outputText>
                     <h:outputText value=""></h:outputText>
-                    
+
                     <h:outputText value="Cargo"></h:outputText>
                     <h:outputText value="#{employeeBean.employeeRole}"></h:outputText>
                     <h:outputText value=""></h:outputText>
-                    
+
                     <h:outputText value="Salario"></h:outputText>
                     <h:outputText value="#{employeeBean.salary}"></h:outputText>
                     <h:outputText value=""></h:outputText>
-                    
+
                     <h:outputText value="Tipo de contrato"></h:outputText>
                     <h:outputText value="#{employeeBean.contractType}"></h:outputText>
                     <h:outputText value=""></h:outputText>
-                    
+
                     <h:outputText value="Estado de contrato     "></h:outputText>
                     <h:outputText value="#{employeeBean.contractStatus}"></h:outputText>
                     <h:commandButton id="quitWork" value="Renunciar" action="#{employeeBean.quitWorkEmployee()}"/>
