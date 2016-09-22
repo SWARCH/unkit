@@ -9,6 +9,7 @@ import businessLogic.controller.HandleVehicle;
 import dataAcces.entity.Vehicle;
 import dataAccess.dao.VehicleDAO;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,7 +27,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class VehicleBean {
+public class VehicleBean implements Serializable{
 
     private String message, id, trademark, description, color;
     private double cost;
@@ -112,7 +113,7 @@ public class VehicleBean {
 
     public String makeOrder() {
         HandleVehicle v = new HandleVehicle();
-        this.setMessage(v.order(cart));
+        this.setMessage(message + " carrito\n " + v.order(cart));
         return message;
     }
 
@@ -142,9 +143,12 @@ public class VehicleBean {
     }
     
     public void addToCart() {
+        this.setMessage("ha entrado!");
         VehicleDAO vehicleDAO = new VehicleDAO();
-        String query = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("query");
-        myCart.add(vehicleDAO.returnVehicle(query));
+        VehicleDAO vehicle = (VehicleDAO) dataTable.getRowData();
+       // String query = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("query");
+        myCart.add(vehicle.searchByID(productId.toString()));
+        this.setMessage("agregad " + id + " ");
     }
 
     public Cart getMyCart() {

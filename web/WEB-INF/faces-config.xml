@@ -47,6 +47,12 @@
     </managed-bean>
     
     <managed-bean>
+        <managed-bean-name>VehicleBean</managed-bean-name>
+        <managed-bean-class>presentation.bean.VehicleBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
         <managed-bean-name>partBean</managed-bean-name>
         <managed-bean-class>presentation.bean.PartBean</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>

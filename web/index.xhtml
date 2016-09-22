@@ -35,9 +35,10 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <h:form class="navbar-form navbar-right">
                        
-                        <h:outputText escape="false" value="#{userBean.message}"></h:outputText>
-                        <div class="form-group">
-                            <h:inputText class="form-control" pt:placeholder="Nombre de ususario" value="#{userBean.username}"></h:inputText>
+                       <!-- <h:outputText escape="false" value="#{userBean.message}"></h:outputText>
+                       -->     
+                       <div class="form-group">
+                           <h:inputText class="form-control" pt:placeholder="Nombre de ususario" value="#{userBean.username}"></h:inputText>
                         </div>
                         <div class="form-group">
                             <h:inputSecret class="form-control" pt:placeholder="Contraseña" value="#{userBean.password}"></h:inputSecret>
@@ -54,41 +55,52 @@
 
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
+            <center>
             <div class="container">
+                <p><br></br><br></br><br></br></p>
+                <p><br></br><br></br><br></br></p>
                 <h1>UN-KIT Solutions, Ltda.</h1>
                 <p>Somos una fábrica CKD con amplia experiaencia en la fabricación de partes y el ensablaje de vehiculos.</p>
-                <p><a class="btn btn-primary btn-lg" href="#" role="button">Aprenda más &raquo;</a></p>
+                <p><a class="btn btn-lg" href="./formulario.xhtml" role="button">Inicia sesión&raquo;</a></p>
+                <p><a class="btn btn-lg" href="./registration.xhtml" role="button">O registrate &raquo;</a></p>
+                <p><br></br><br></br><br></br></p>
+                <p><a class="btn btn-primary btn-lg" href="#mitad" role="button">Aprenda más &raquo;</a></p>
+                <p><br></br><br></br><br></br></p>
             </div>
+            </center>
         </div>
 
-
-        <div class="container">
+        
+            
+        <div class="container" id="mitad">
             <!-- Example row of columns -->
             <div class="row">
                 <div class="col-md-4">
+                    <p></p>
                     <h2>Ensambladoras</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
                 </div>
                 <div class="col-md-4">
                     <h2>Mayoristas</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
                 </div>
                 <div class="col-md-4">
                     <h2>Trabaje aquí</h2>
                     <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
                 </div>
             </div>
 
-
-            <h1>Sistema UNKIT</h1>
-            <a href="./login.xhtml">Ingresar</a>
-            <h2></h2>
-            <a href="./registration.xhtml">Registrarse</a>
-            <a href="./formulario.xhtml">LOGIN</a>
-
+            <div class="container" id="final">
+                <p><br></br><br></br><br></br></p>
+                <center>
+                <p><br></br><br></br><br></br></p>
+                <h1>¿Aún no eres parte de nosotros?</h1>     
+                <p><br></br><br></br><br></br></p>
+                <a class="btn btn-primary" href="./registration.xhtml">Registrarse</a>
+                <h2></h2>                
+                <p><a class="btn btn-default" href="#" role="button">TOP &raquo;</a></p>
+                </center>
+            </div>
             <footer>
                 <p>&copy; 2016 UNKIT, Inc.</p>
             </footer>

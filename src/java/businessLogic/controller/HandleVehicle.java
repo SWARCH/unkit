@@ -46,7 +46,7 @@ public class HandleVehicle {
         OrderSaleDAO os = new OrderSaleDAO();
         OrderSale oss = os.persist(order);
         if (oss != null) {
-            return "Compra exitosa";
+            return "Compra exitosa " + order.getOrderCost() + "  ss " ;
         } else {
             return "la cuenta no pudo ser creada.";
         }
