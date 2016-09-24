@@ -9,40 +9,56 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
-        <title>register</title>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content=""></meta>
+        <meta name="author" content=""></meta>
+        <link rel="icon" href="../../favicon.ico"></link>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet"></link>
+
+        <!-- Custom styles for this template -->
+        <link href="navbar.css" rel="stylesheet"></link>
+
+        <title>Registro</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div>Si eres un cliente de la empresa, por favor registrate</div>
-        <h:form>
+        <center>
+            <h:form>
+                <h2>Registro</h2>
+                <p>Si es una empresa mayorista o una ensambladora complete la siguiente información.</p>
+                <h:panelGrid columns="2">
 
-            <h:panelGrid columns="2">
+                    <label>Documento:</label>
+                    <h:inputText value="#{userBean.id}" required="true" requiredMessage="¡El ID es requerido!"/>
 
-                <label>Documento:</label>
-                <h:inputText value="#{userBean.id}" required="true" requiredMessage="¡El ID es requerido!"/>
+                    <label>Nombre Organiazación:</label>
+                    <h:inputText value="#{userBean.tradeName}" required="true" requiredMessage="¡El ID es requerido!"/>
 
-                <label>Nombre Organiazación:</label>
-                <h:inputText value="#{userBean.tradeName}" required="true" requiredMessage="¡El ID es requerido!"/>
-                
-                <label>Tipo:</label>
-                <h:selectOneMenu id="type" value="#{userBean.type}">
-                    <f:selectItem id="item1" itemLabel="Ensambladora" itemValue="Ensambladora" />
-                    <f:selectItem id="item2" itemLabel="Mayorista" itemValue="Mayorista" />
-                </h:selectOneMenu>
+                    <label>Tipo:</label>
+                    <h:selectOneMenu id="type" value="#{userBean.type}">
+                        <f:selectItem id="item1" itemLabel="Ensambladora" itemValue="Ensambladora" />
+                        <f:selectItem id="item2" itemLabel="Mayorista" itemValue="Mayorista" />
+                    </h:selectOneMenu>
 
-                <label>Usuario:</label>
-                <h:inputText value="#{userBean.username}" required="true" requiredMessage="¡El Nombre es requerido!"/>
+                    <label>Usuario:</label>
+                    <h:inputText value="#{userBean.username}" required="true" requiredMessage="¡El Nombre es requerido!"/>
 
-                <label>Contraseña:</label>
-                <h:inputText value="#{userBean.password}" required="true" requiredMessage="¡La Contraseña es requerida!"/>
-            </h:panelGrid>
-            <br/>
-            <h:commandButton action="#{userBean.createAccount}" value="Crear"/>
-            <br/><br/>
-            <h:outputText value="#{userBean.message}"/>
-            <br/><br/>
-            <a href="login.xhtml">Ingresar</a><br/>  
+                    <label>Contraseña:</label>
+                    <h:inputText value="#{userBean.password}" required="true" requiredMessage="¡La Contraseña es requerida!"/>
+                </h:panelGrid>
+                <br/>
+                <h:commandButton action="#{userBean.createAccount}" value="Crear"/>
+                <br/><br/>
+                <h:outputText value="#{userBean.message}"/>
+                <br/><br/>
+                <a href="index.xhtml" class="btn btn-lg btn-primary" role="button">Regresar</a><br/>  
 
-        </h:form>
+            </h:form>
+        </center>
     </body>
 </html>
