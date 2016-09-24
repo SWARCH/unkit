@@ -101,6 +101,10 @@
             <to-view-id>/management/manager.xhtml</to-view-id>            
         </navigation-case>
         <navigation-case>
+            <from-outcome>editPassword</from-outcome>
+            <to-view-id>/management/editPassword.xhtml</to-view-id>            
+        </navigation-case>
+        <navigation-case>
             <from-outcome>Can't find the user</from-outcome>
             <to-view-id>/registration.xhtml</to-view-id>
             <redirect/>

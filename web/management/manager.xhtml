@@ -41,12 +41,12 @@ and open the template in the editor.
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="index.xhtml">Home</a></li>
-                            <li><a href="management/registerEmployee.xhtml">Registro de empleados</a></li>
-                            <li><a href="management/dismissEmployee.xhtml">Cancelaciones de contrato</a></li>
-                            <li><a href="management/registerPart.xhtml">Registro de partes</a></li>
-                            <li><a href="management/searchPart.xhtml">Actualización de partes</a></li>
-                            <li><a href="management/registerVehicle.xhtml">Registro de vehículos</a></li>
+                            <li class="active"><a href="index.xhtml">Inicio</a></li>
+                            <li><a href="management/registerEmployee.xhtml">Registrar empleados</a></li>
+                            <li><a href="management/dismissEmployee.xhtml">Cancelar contratos</a></li>
+                            <li><a href="management/registerPart.xhtml">Registrar partes</a></li>
+                            <li><a href="management/searchPart.xhtml">Actualizar partes</a></li>
+                            <li><a href="management/registerVehicle.xhtml">Registar vehículos</a></li>
                             <!--
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración de productos <span class="caret"></span></a>
@@ -75,10 +75,49 @@ and open the template in the editor.
 
             <!-- Main component for a primary marketing message or call to action -->
             <div class="jumbotron">
-                <h1>Bienvenido #{userBean.getName()}</h1>
-                <p>Desde aqui usted puede realizar multiples tareas administrativas. Sientase cómodo</p>
+                #{userBean.loged()}
+                #{employeeBean.employeeLoged()}
+                <h1>Bienvenido #{employeeBean.name}</h1>
+                <p>Desde aquí usted puede realizar múltiples tareas administrativas. Siéntase cómodo</p>
+                <center>            
+                    <h:form>
+                        <h2>Datos personales</h2>
+                        <h:panelGrid columns="3">
+                            <h:outputText value="Nombre"></h:outputText>
+                            <h:inputText id="nameEmployeeText" value="#{employeeBean.name}"></h:inputText>
+                            <h:commandButton id="save" value="Editar" action="${employeeBean.editNameEmployee()}"/>
+
+                            <h:outputText value="Identificación"></h:outputText>
+                            <h:outputText value="#{employeeBean.userid}"></h:outputText>
+                            <h:outputText value=""></h:outputText>
+
+                            <h:outputText value="Cargo"></h:outputText>
+                            <h:outputText value="#{employeeBean.employeeRole}"></h:outputText>
+                            <h:outputText value=""></h:outputText>
+
+                            <h:outputText value="Salario"></h:outputText>
+                            <h:outputText value="#{employeeBean.salary}"></h:outputText>
+                            <h:outputText value=""></h:outputText>
+
+                            <h:outputText value="Tipo de contrato"></h:outputText>
+                            <h:outputText value="#{employeeBean.contractType}"></h:outputText>
+                            <h:outputText value=""></h:outputText>
+
+                            <h:outputText value="Estado de contrato     "></h:outputText>
+                            <h:outputText value="#{employeeBean.contractStatus}"></h:outputText>
+                            <h:commandButton id="quitWork" value="Renunciar" action="#{employeeBean.quitWorkEmployee()}"/>
+                            
+                            <h:commandButton id="editPass" value="Editar contraseña" action="editPassword.xhtml"/>
+                        </h:panelGrid>
+                        <br/>
+                        <br/>
+                    </h:form>
+                </center>
                 <p>
-                    <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">Aprenda cómo hacerlo</a>
+                    <h:form>
+                    <h:commandButton id="logout" class="btn btn-lg btn-primary" value="Logout" action="#{userBean.logout}"/>
+                    </h:form>
+                    <!--<a class="btn btn-lg btn-primary" href="employeeRol/employee.xhtml" role="button">Ingresar</a>-->
                 </p>
             </div>
 
@@ -86,15 +125,7 @@ and open the template in the editor.
 
 
         <!--<f:view>-->
-            <h1><h:outputText value="Factory Administration Panel" /></h1>
-            Welcome ${userBean.username}!
-            Welcome ${userBean.username}!  ${userBean.id}! 
-            <h:form>
-                <h:commandButton id="logout" value="Logout" action="#{userBean.logout}"/>
-            </h:form>
-            <br/>
-            <a href="management/registerEmployee.xhtml">Registrar empleados</a>
-            <a href="management/dismissEmployee.xhtml">Despedir empleados</a>
+            
         <!--</f:view>-->
 
     </h:body>
