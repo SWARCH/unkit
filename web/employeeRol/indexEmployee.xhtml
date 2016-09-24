@@ -20,15 +20,15 @@ and open the template in the editor.
 
         <!-- Custom styles for this template -->
         <link href="navbar.css" rel="stylesheet"></link>
-        
+
         <title>Empleado</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
 
     <h:body>
-        
+
         <div class="container">
-            
+
             <!-- Static navbar -->
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -44,9 +44,7 @@ and open the template in the editor.
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="employeeRol/indexEmployee.xhtml">Inicio</a></li>
-                            <li><a href="employeeRol/employee.xhtml">Datos personales</a></li>
                             <li><a href="employeeRol/editEmployee.xhtml">Cambiar contraseña</a></li>
-                            <li><a href="employeeRol/indexEmployee.xhtml">Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </div>
@@ -58,8 +56,43 @@ and open the template in the editor.
                 #{employeeBean.employeeLoged()}
                 <h1>Bienvenido #{employeeBean.name}</h1>
                 <p>En esta página podrá ver sus datos personales.</p>
+                <center>            
+                    <h:form>
+                        <h2>Datos personales</h2>
+                        <h:panelGrid columns="3">
+                            <h:outputText value="Nombre"></h:outputText>
+                            <h:inputText id="nameEmployeeText" value="#{employeeBean.name}"></h:inputText>
+                            <h:commandButton id="save" value="Editar" action="${employeeBean.editNameEmployee()}"/>
+
+                            <h:outputText value="Identificación"></h:outputText>
+                            <h:outputText value="#{employeeBean.userid}"></h:outputText>
+                            <h:outputText value=""></h:outputText>
+
+                            <h:outputText value="Cargo"></h:outputText>
+                            <h:outputText value="#{employeeBean.employeeRole}"></h:outputText>
+                            <h:outputText value=""></h:outputText>
+
+                            <h:outputText value="Salario"></h:outputText>
+                            <h:outputText value="#{employeeBean.salary}"></h:outputText>
+                            <h:outputText value=""></h:outputText>
+
+                            <h:outputText value="Tipo de contrato"></h:outputText>
+                            <h:outputText value="#{employeeBean.contractType}"></h:outputText>
+                            <h:outputText value=""></h:outputText>
+
+                            <h:outputText value="Estado de contrato     "></h:outputText>
+                            <h:outputText value="#{employeeBean.contractStatus}"></h:outputText>
+                            <h:commandButton id="quitWork" value="Renunciar" action="#{employeeBean.quitWorkEmployee()}"/>
+                        </h:panelGrid>
+                        <br/>
+                        <br/>
+                    </h:form>
+                </center>
                 <p>
-                    <a class="btn btn-lg btn-primary" href="employeeRol/employee.xhtml" role="button">Ingresar</a>
+                    <h:form>
+                    <h:commandButton id="logout" class="btn btn-lg btn-primary" value="Logout" action="#{userBean.logout}"/>
+                    </h:form>
+                    <!--<a class="btn btn-lg btn-primary" href="employeeRol/employee.xhtml" role="button">Ingresar</a>-->
                 </p>
             </div>
 
