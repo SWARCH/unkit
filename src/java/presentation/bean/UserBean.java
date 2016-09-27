@@ -173,11 +173,15 @@ public class UserBean {
         return message;
     }
 
-    public void createAccount() {
+    public String createAccount() {
         HandleUser createAccount = new HandleUser();
         HandleCustomer cx = new HandleCustomer();
-        this.setMessage(createAccount.createUser(username, password, id));
-        this.setMessage(cx.createAccount(id, tradeName, type));
+        this.setMessage(createAccount.createUser(username, password, id)
+            + (cx.createAccount(id, tradeName, type)));
+        if (message!=null){
+            this.setMessage("cliente");
+        }
+        return message;
     }
 
     public void createEmployee() {
