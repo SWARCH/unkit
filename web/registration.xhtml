@@ -7,7 +7,8 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <head>
         <meta charset="utf-8"></meta>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
@@ -27,38 +28,61 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <center>
-            <h:form>
-                <h2>Registro</h2>
-                <p>Si es una empresa mayorista o una ensambladora complete la siguiente información.</p>
-                <h:panelGrid columns="2">
 
-                    <label>Documento:</label>
-                    <h:inputText value="#{userBean.id}" required="true" requiredMessage="¡El ID es requerido!"/>
+        <div class="container">
 
-                    <label>Nombre Organiazación:</label>
-                    <h:inputText value="#{userBean.tradeName}" required="true" requiredMessage="¡El ID es requerido!"/>
+            <!-- Static navbar -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">UN-KIT Solutions, Ltd.</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="index.xhtml">Inicio</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="jumbotron">
+                <center>
+                    <h:form>
+                        <h2>Registro</h2>
+                        <p>Si es una empresa mayorista o una ensambladora complete la siguiente información.</p>
+                        <h:panelGrid columns="2">
 
-                    <label>Tipo:</label>
-                    <h:selectOneMenu id="type" value="#{userBean.type}">
-                        <f:selectItem id="item1" itemLabel="Ensambladora" itemValue="Ensambladora" />
-                        <f:selectItem id="item2" itemLabel="Mayorista" itemValue="Mayorista" />
-                    </h:selectOneMenu>
+                            <h:outputText value="Documento"></h:outputText>
+                            <h:inputText value="#{userBean.id}" required="true" requiredMessage="¡El ID es requerido!"/>
 
-                    <label>Usuario:</label>
-                    <h:inputText value="#{userBean.username}" required="true" requiredMessage="¡El Nombre es requerido!"/>
+                            <h:outputText value="Razon social"></h:outputText>
+                            <h:inputText value="#{userBean.tradeName}" required="true" requiredMessage="¡El ID es requerido!"/>
 
-                    <label>Contraseña:</label>
-                    <h:inputText value="#{userBean.password}" required="true" requiredMessage="¡La Contraseña es requerida!"/>
-                </h:panelGrid>
-                <br/>
-                <h:commandButton action="#{userBean.createAccount}" value="Crear"/>
-                <br/><br/>
-                <h:outputText value="#{userBean.message}"/>
-                <br/><br/>
-                <a href="index.xhtml" class="btn btn-lg btn-primary" role="button">Regresar</a><br/>  
+                            <h:outputText value="Tipo"></h:outputText>
+                            <h:selectOneMenu id="type" value="#{userBean.type}">
+                                <f:selectItem id="item1" itemLabel="Ensambladora" itemValue="Ensambladora" />
+                                <f:selectItem id="item2" itemLabel="Mayorista" itemValue="Mayorista" />
+                            </h:selectOneMenu>
 
-            </h:form>
-        </center>
+                            <h:outputText value="Nombre de ususario &#160;"></h:outputText>
+                            <h:inputText value="#{userBean.username}" required="true" requiredMessage="¡El Nombre es requerido!"/>
+
+                            <h:outputText value="Contraseña"></h:outputText>
+                            <h:inputSecret value="#{userBean.password}" required="true" requiredMessage="¡La Contraseña es requerida!"/>
+                        </h:panelGrid>
+                        <br/>
+                        <h:commandButton styleClass="btn btn-lg btn-primary" action="#{userBean.createAccount}" value="Crear cuenta"/>
+                        <br/><br/>
+                        <h:outputText value="#{userBean.message}"/> 
+
+                    </h:form>
+                </center>
+            </div>
+        </div>
     </body>
 </html>
