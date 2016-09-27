@@ -5,7 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta charset="utf-8"></meta>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
@@ -23,10 +23,8 @@ and open the template in the editor.
     </h:head>
 
     <h:body>
-
-
         <div class="container">
-            
+
             <!-- Static navbar -->
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -37,16 +35,16 @@ and open the template in the editor.
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">UN-KIT Solutions, Ltd.</a>
+                        <a class="navbar-brand" href="index.xhtml">UN-KIT Solutions, Ltd.</a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="index.xhtml">Inicio</a></li>
-                            <li><a href="management/registerEmployee.xhtml">Registrar empleados</a></li>
-                            <li><a href="management/dismissEmployee.xhtml">Cancelar contratos</a></li>
-                            <li><a href="management/registerPart.xhtml">Registrar partes</a></li>
-                            <li><a href="management/searchPart.xhtml">Actualizar partes</a></li>
-                            <li><a href="management/registerVehicle.xhtml">Registar vehículos</a></li>
+                            <li class="active"><a href="management/manager.xhtml">Inicio</a></li>
+                            <li><a href="management/managementEmployee.xhtml">Gestión de empleados</a></li>
+                            <li><a href="management/managementParts.xhtml">Gestión de partes</a></li>
+                            <li><a href="management/managementVehicles.xhtml">Gestión de vehículos</a></li>
+                            <li><a href="management/editPassword.xhtml">Cambiar contraseña</a></li>
+
                             <!--
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración de productos <span class="caret"></span></a>
@@ -82,32 +80,31 @@ and open the template in the editor.
                 <center>            
                     <h:form>
                         <h2>Datos personales</h2>
-                        <h:panelGrid columns="3">
+                        <h:panelGrid columns="2">
                             <h:outputText value="Nombre"></h:outputText>
                             <h:inputText id="nameEmployeeText" value="#{employeeBean.name}"></h:inputText>
-                            <h:commandButton id="save" value="Editar" action="${employeeBean.editNameEmployee()}"/>
 
                             <h:outputText value="Identificación"></h:outputText>
                             <h:outputText value="#{employeeBean.userid}"></h:outputText>
-                            <h:outputText value=""></h:outputText>
 
                             <h:outputText value="Cargo"></h:outputText>
                             <h:outputText value="#{employeeBean.employeeRole}"></h:outputText>
-                            <h:outputText value=""></h:outputText>
 
                             <h:outputText value="Salario"></h:outputText>
                             <h:outputText value="#{employeeBean.salary}"></h:outputText>
-                            <h:outputText value=""></h:outputText>
 
                             <h:outputText value="Tipo de contrato"></h:outputText>
                             <h:outputText value="#{employeeBean.contractType}"></h:outputText>
-                            <h:outputText value=""></h:outputText>
 
-                            <h:outputText value="Estado de contrato     "></h:outputText>
+                            <h:outputText value="Estado de contrato &#160;&#160; &#160;&#160;&#160;&#160; &#160;&#160;"></h:outputText>
                             <h:outputText value="#{employeeBean.contractStatus}"></h:outputText>
-                            <h:commandButton id="quitWork" value="Renunciar" action="#{employeeBean.quitWorkEmployee()}"/>
-                            
-                            <h:commandButton id="editPass" value="Editar contraseña" action="editPassword.xhtml"/>
+
+                            <h:outputText value="&#160;"/>
+                            <h:outputText value="&#160;"/>
+
+                            <h:commandButton id="save" styleClass="btn btn-lg btn-primary" value="Editar nombre" action="${employeeBean.editNameEmployee()}"/>               
+                            <h:commandButton id="quitWork" class="btn btn-lg btn-primary" value="Renunciar" action="#{employeeBean.quitWorkEmployee()}"/>
+
                         </h:panelGrid>
                         <br/>
                         <br/>
@@ -115,17 +112,19 @@ and open the template in the editor.
                 </center>
                 <p>
                     <h:form>
-                    <h:commandButton id="logout" class="btn btn-lg btn-primary" value="Logout" action="#{userBean.logout}"/>
+                        <h:commandButton id="logout" class="btn btn-lg btn-primary" value="Logout" action="#{userBean.logout}"/>
                     </h:form>
                     <!--<a class="btn btn-lg btn-primary" href="employeeRol/employee.xhtml" role="button">Ingresar</a>-->
                 </p>
             </div>
-
+            <footer>
+                <p>&#169; 2016 UNKIT, Inc.</p>
+            </footer>
         </div> <!-- /container -->
 
 
         <!--<f:view>-->
-            
+
         <!--</f:view>-->
 
     </h:body>

@@ -6,49 +6,94 @@
       xmlns:f="http://java.sun.com/jsf/core"
       >
     <h:head>
-        <title>Despido de empleados</title>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content=""></meta>
+        <meta name="author" content=""></meta>
+        <link rel="icon" href="../../favicon.ico"></link>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet"></link>
+
+        <!-- Custom styles for this template -->
+        <link href="navbar.css" rel="stylesheet"></link>
+        <title>Cancelación de contratos</title>
     </h:head>
     <h:body>
+        <div class="container">
+            <!-- Static navbar -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.xhtml">UN-KIT Solutions, Ltd.</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="management/manager.xhtml">Inicio</a></li>
+                            <li><a href="management/managementEmployee.xhtml">Gestión de empleados</a></li>
+                            <li><a href="management/managementParts.xhtml">Gestión de partes</a></li>
+                            <li><a href="management/managementVehicles.xhtml">Gestión de vehículos</a></li>
+                            <li><a href="management/editPassword.xhtml">Cambiar contraseña</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="jumbotron">
+                <center>
+                    <h2>Cancelación de contratos</h2>
+                    <p>Ingrese el número de identificación del empleado.</p>
+                    <h:form>
+                        <br/>
+                        <h:inputText value="#{userBean.id}"></h:inputText>
+                        <h:outputText value="&#160;&#160;&#160;&#160;"/>
+                        <h:commandButton action="#{userBean.dismissEmployee()}" class="btn btn-lg btn-primary" value="Cancelar contrato"/>
+                    </h:form>
+                    <br/><br/><br/><br/>
+                    <h:dataTable value="#{userBean.getEmployeeList()}" var="empl" border="1">
 
-        <h1>Despido de empleados</h1>
+                        <h:column>
+                            <f:facet name="header">
+                                Número de identificación&#160;&#160;
+                            </f:facet>
+                            #{empl.userid}
+                        </h:column>
 
-        <h:form>
-            <label>Introduzca la identificación del empleado: </label>
-            <h:inputText value="#{userBean.id}"></h:inputText>
-            <h:commandButton action="#{userBean.dismissEmployee()}" value="Cancelar contrato"/>
-        </h:form>
-        <h:dataTable value="#{userBean.getEmployeeList()}" var="empl" border="1">
+                        <h:column>
+                            <f:facet name="header">
+                                Nombre&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            </f:facet>
+                            #{empl.name}
+                        </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    ID
-                </f:facet>
-                #{empl.userid}
-            </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                Estado de contrato&#160;&#160;
+                            </f:facet>
+                            #{empl.contractStatus}
+                        </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    Name
-                </f:facet>
-                #{empl.name}
-            </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                Rol&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            </f:facet>
+                            #{empl.employeeRole}
+                        </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    Estado de contrato
-                </f:facet>
-                #{empl.contractStatus}
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">
-                    Rol
-                </f:facet>
-                #{empl.employeeRole}
-            </h:column>
-
-        </h:dataTable>
-
+                    </h:dataTable>
+                </center>
+            </div>
+            <footer>
+                <p>&#169; 2016 UNKIT, Inc.</p>
+            </footer>
+        </div> 
     </h:body>
 
 </html>

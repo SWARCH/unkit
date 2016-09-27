@@ -1,9 +1,11 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <meta charset="utf-8"></meta>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
@@ -18,10 +20,11 @@
 
         <!-- Custom styles for this template -->
         <link href="navbar.css" rel="stylesheet"></link>
-        <title>Cambiar contraseña</title>
-        #{userBean.loged()}
     </h:head>
+
     <h:body>
+
+
         <div class="container">
 
             <!-- Static navbar -->
@@ -38,45 +41,40 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="employeeRol/indexEmployee.xhtml">Inicio</a></li>
-                            <li><a href="employeeRol/editEmployee.xhtml">Cambiar contraseña</a></li>
+                            <li class="active"><a href="management/manager.xhtml">Inicio</a></li>
+                            <li><a href="management/managementEmployee.xhtml">Gestión de empleados</a></li>
+                            <li><a href="management/managementParts.xhtml">Gestión de partes</a></li>
+                            <li><a href="management/managementVehicles.xhtml">Gestión de vehículos</a></li>
+                            <li><a href="management/editPassword.xhtml">Cambiar contraseña</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
-
-            <!-- Main component for a primary marketing message or call to action -->
             <div class="jumbotron">
-
+                #{userBean.loged()}
                 #{employeeBean.employeeLoged()}
+                <h2>Gestión de partes</h2>
+                <p>Aquí puede gestionar las partes que fabricamos.</p>
                 <center>            
                     <h:form>
-                        <h2>Cambiar contraseña</h2>
-                        <p>#{employeeBean.name}</p>
-                        <h:panelGrid columns="2">                  
-                            <h:outputText value="Nueva contraseña"></h:outputText>
-                            <h:inputSecret id="passNew" value="#{userBean.passwordB}"></h:inputSecret>
-
-                            <h:outputText value="Ingrese de nuevo la contraseña &#160;&#160; &#160;&#160;&#160;&#160; &#160;&#160;"></h:outputText>
-                            <h:inputSecret id="passConfirmation" value="#{userBean.passwordC}"></h:inputSecret>
-
-                            <h:outputText value="&#160;"/>
-                            <h:outputText value="&#160;"/>
-
-                            <h:commandButton id="editPassword" class="btn btn-lg btn-primary" value="Guardar" action="#{userBean.editPassword()}"/>
-                            <h:commandButton id="back" class="btn btn-lg btn-primary" value="Regresar" action="indexEmployee"/>
-
-                        </h:panelGrid>
-
-                        <br />
-                        <br />
-                        <h:outputText escape="false" value="#{userBean.message}"></h:outputText>
+                        <center>
+                            <h3>Seleccione una opción</h3>
+                            <h:commandButton id="registro" class="btn btn-lg btn-primary" value="Registrar partes" action="registerPart"/>
+                            <h:outputText value="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"/>
+                            <h:commandButton id="dismiss" class="btn btn-lg btn-primary" value="Actualizar partes" action="updatePart"/>
+                        </center>
                     </h:form>
                 </center>
+                <br/><br/>
+                <p>
+                    <h:form>
+                        <h:commandButton id="logout" class="btn btn-lg btn-primary" value="Logout" action="#{userBean.logout}"/>
+                    </h:form>
+                </p>
             </div>
             <footer>
                 <p>&#169; 2016 UNKIT, Inc.</p>
             </footer>
-        </div>
+        </div> 
     </h:body>
 </html>

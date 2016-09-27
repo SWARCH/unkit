@@ -4,60 +4,98 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content=""></meta>
+        <meta name="author" content=""></meta>
+        <link rel="icon" href="../../favicon.ico"></link>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet"></link>
+
+        <!-- Custom styles for this template -->
+        <link href="navbar.css" rel="stylesheet"></link>        
         <title>Registro de empleados</title>
     </h:head>
     <h:body>
-        <center>
-            <h:form>
-                <h1>Registro de empleados</h1>
-                <h:panelGrid columns="2">
+        <div class="container">
+            <!-- Static navbar -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.xhtml">UN-KIT Solutions, Ltd.</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="management/manager.xhtml">Inicio</a></li>
+                            <li><a href="management/managementEmployee.xhtml">Gestión de empleados</a></li>
+                            <li><a href="management/managementParts.xhtml">Gestión de partes</a></li>
+                            <li><a href="management/managementVehicles.xhtml">Gestión de vehículos</a></li>
+                            <li><a href="management/editPassword.xhtml">Cambiar contraseña</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="jumbotron">
+                <center>
+                    <h:form>
+                        <center>
+                            <h2>Registro de empleados</h2>
+                            <p> Complete la siguiente información.</p>
+                            <br/>
+                            <h:panelGrid columns="2">
+                                <h:outputText value="Nombre"/>
+                                <h:inputText value="#{userBean.name}" required="true" requiredMessage="Se requiere un nombre"/>
 
-                    <label>Nombre:</label>
-                    <h:inputText value="#{userBean.name}" required="true" requiredMessage="Se requiere un nombre"></h:inputText> 
+                                <h:outputText value="Identificación"/>
+                                <h:inputText value="#{userBean.id}"  required="true" requiredMessage="Se requiere un número de identificación"/>
 
-                    <!--Revisar, el id se debe agregar a user y employee-->
+                                <h:outputText value="Salario"/>
+                                <h:inputText value="#{userBean.salary}" required="true" requiredMessage="Se requiere especificar salario"/>
 
-                    <label>Identificación:</label>
-                    <h:inputText value="#{userBean.id}"  required="true" requiredMessage="Se requiere un número de identificación"></h:inputText>
+                                <h:outputText value="Tipo de contrato"/>
+                                <h:selectOneMenu id="contractInputText" value="#{userBean.contractType}">
+                                    <f:selectItem id="item1" itemLabel="Indenfinido" itemValue="Indefinido" />
+                                    <f:selectItem id="item2" itemLabel="Prestación de servicios" itemValue="Prestación de servicios" />
+                                    <f:selectItem id="item3" itemLabel="Termino fijo" itemValue="Término fijo"/> 
+                                </h:selectOneMenu>
 
-                    <label>Salario:</label>
-                    <h:inputText value="#{userBean.salary}" required="true" requiredMessage="Se requiere especificar salario"></h:inputText>
+                                <h:outputText value="Estado de contrato &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"/>
+                                <h:selectOneRadio value="#{userBean.contractStatus}">
+                                    <f:selectItem itemValue="Activo" itemLabel="Activo" />
+                                    <f:selectItem itemValue="Inactivo" itemLabel="Inactivo" />
+                                </h:selectOneRadio>
 
-                    <label>Tipo de contrato:</label>
-                    <h:selectOneMenu id="contractInputText" value="#{userBean.contractType}">
-                        <f:selectItem id="item1" itemLabel="Indenfinido" itemValue="INDEF" />
-                        <f:selectItem id="item2" itemLabel="Prestación de servicios" itemValue="SERVICES" />
-                        <f:selectItem id="item3" itemLabel="Termino fijo" itemValue="FIXED_TERM"/> 
-                    </h:selectOneMenu>
+                                <h:outputText value="Rol"/>
+                                <h:inputText value="#{userBean.employeeRole}" required="true" requiredMessage="Se requiere un rol de empleado"/>
 
-                    <label>Estado de contrato:</label>
-                    <h:selectOneRadio value="#{userBean.contractStatus}">
-                        <f:selectItem itemValue="ACTIVO" itemLabel="ACTIVE" />
-                        <f:selectItem itemValue="INACTIVO" itemLabel="INACTIVE" />
-                    </h:selectOneRadio>
+                                <h:outputText value="Nombre de ususario"/>
+                                <h:inputText value="#{userBean.username}" required="true" requiredMessage="Se requiere un nombre de ususario"/>
 
-                    <label>Rol:</label>
-                    <h:inputText value="#{userBean.employeeRole}" required="true" requiredMessage="Se requiere un rol de empleado"></h:inputText>
+                                <h:outputText value="Contraseña"/>
+                                <h:inputSecret value="#{userBean.password}" required="true" requiredMessage="Se requiere una contraseña"/>
 
-                    <label>Nombre de usuario:</label>
-                    <h:inputText value="#{userBean.username}" required="true" requiredMessage="Se requiere un nombre de ususario"></h:inputText>
-
-                    <!-->Revisar la validación, la entrada de los dos campos debe ser igual<-->
-                    <label>Contraseña:</label>
-                    <h:inputSecret value="#{userBean.password}" required="true" requiredMessage="Se requiere una contraseña"></h:inputSecret>
-                    <!-->Revisar la validación, la entrada de los dos campos debe ser igual
-                    <h:outputText value="Escriba de nuevo la contraseña"></h:outputText>
-                    <h:inputSecret id="passwordConfirmationEmployeeInputSecret" value="#{userBean.password}" required="true" requiredMessage="Se requiere una contraseña"></h:inputSecret>
-                    <-->
-                </h:panelGrid>
-
-                <br/>
-                <h:commandButton action="#{userBean.createEmployee}" value="Registrar"></h:commandButton>
-                <br/><br/>
-                <h:outputText value="#{userBean.message}"/>
-                <a href="../index.xhtml">Inicio</a><br/>  
-            </h:form>
-        </center>
+                            </h:panelGrid>
+                        </center>
+                        <br/>
+                        <h:commandButton action="#{userBean.createEmployee}" class="btn btn-lg btn-primary" value="Registrar"/>
+                        <br/><br/>
+                        <h:outputText value="#{userBean.message}"/>
+                    </h:form>
+                </center>
+            </div>
+            <footer>
+                <p>&#169; 2016 UNKIT, Inc.</p>
+            </footer>
+        </div> 
     </h:body>
 </html>
 

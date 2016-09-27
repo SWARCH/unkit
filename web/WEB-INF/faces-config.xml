@@ -109,6 +109,18 @@
             <to-view-id>/management/editPassword.xhtml</to-view-id>            
         </navigation-case>
         <navigation-case>
+            <from-outcome>managementEmployee</from-outcome>
+            <to-view-id>/management/managementEmployee.xhtml</to-view-id>            
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>managementParts</from-outcome>
+            <to-view-id>/management/managementParts.xhtml</to-view-id>            
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>managementVehicles</from-outcome>
+            <to-view-id>/management/managementVechicles.xhtml</to-view-id>            
+        </navigation-case>
+        <navigation-case>
             <from-outcome>Can't find the user</from-outcome>
             <to-view-id>/registration.xhtml</to-view-id>
             <redirect/>

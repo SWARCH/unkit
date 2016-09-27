@@ -29,9 +29,9 @@ public class HandleEmployee {
         Employee ex = employeeDAO.persist(employee);
         
        if ( ex != null) {
-           return "la cuenta ha sido creada, su número de cuenta es " + employee.getUserid() + ".";
+           return "El registro se realizó exitosamente.";
        } else {
-           return "no se pudo crear la cuenta";
+           return "No se completó el registro.";
        }
     }
     
@@ -44,7 +44,7 @@ public class HandleEmployee {
         EmployeeDAO employeeDAO = new EmployeeDAO();
         Employee candidate = employeeDAO.searchByUserid(id);
         System.out.println(candidate);
-        employeeDAO.editContractStatus(candidate, "INACTIVO");
+        employeeDAO.editContractStatus(candidate, "Inactivo");
     }
     
     public Employee extractEmployee(String userid){
@@ -66,6 +66,6 @@ public class HandleEmployee {
     public void quitWork(String userid){
         EmployeeDAO employeeDAO = new EmployeeDAO();
         Employee employee = employeeDAO.searchByUserid(userid);
-        employeeDAO.editContract(employee, "INACTIVO");
+        employeeDAO.editContract(employee, "Inactivo");
     } 
 }

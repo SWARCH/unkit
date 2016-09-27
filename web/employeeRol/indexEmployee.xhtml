@@ -39,7 +39,7 @@ and open the template in the editor.
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">UN-KIT Solutions, Ltd.</a>
+                        <a class="navbar-brand" href="index.xhtml">UN-KIT Solutions, Ltd.</a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
@@ -54,10 +54,8 @@ and open the template in the editor.
             <div class="jumbotron">
                 #{userBean.loged()}
                 #{employeeBean.employeeLoged()}
-                <center>
-                    <h1>Bienvenido #{employeeBean.name}</h1>
-                    <p>En esta página podrá ver sus datos personales.</p>
-                </center>
+                <h1>Bienvenido #{employeeBean.name}</h1>
+                <p>En esta página podrá ver sus datos personales.</p>
                 <center>            
                     <h:form>
                         <h2>Datos personales</h2>
@@ -97,6 +95,9 @@ and open the template in the editor.
                     </h:form>
                 </p>
             </div>
+            <footer>
+                <p>&#169; 2016 UNKIT, Inc.</p>
+            </footer>
         </div>
     </h:body>
 </html>
