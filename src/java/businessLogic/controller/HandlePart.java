@@ -36,7 +36,6 @@ public class HandlePart {
         PartDAO partDAO = new PartDAO();
         Part candidate = partDAO.searchById(id);
         
-        
         candidate.setName(name);
         candidate.setDescription(description);
         candidate.setCost(cost);
@@ -44,11 +43,11 @@ public class HandlePart {
         if (candidate == null) {
             System.out.println("What the hell");
             
-            return "Error al recuperar datos de la parte";
+            return "Error al actualizar";
         }
         
         partDAO.update(candidate);
-        return "Parte recuperada con éxito";
+        return "La parte " + id + "se actualizó correctamente.";
         
     }
     

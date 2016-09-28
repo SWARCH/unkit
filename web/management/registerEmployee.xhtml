@@ -16,7 +16,9 @@
         <link href="css/bootstrap.min.css" rel="stylesheet"></link>
 
         <!-- Custom styles for this template -->
-        <link href="navbar.css" rel="stylesheet"></link>        
+        <link href="navbar.css" rel="stylesheet"></link> 
+        <script src="js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <title>Registro de empleados</title>
     </h:head>
     <h:body>
@@ -47,7 +49,6 @@
             <div class="jumbotron">
                 <center>
                     <h:form>
-                        <center>
                             <h2>Registro de empleados</h2>
                             <p> Complete la siguiente información.</p>
                             <br/>
@@ -84,7 +85,6 @@
                                 <h:inputSecret value="#{userBean.password}" required="true" requiredMessage="Se requiere una contraseña"/>
 
                             </h:panelGrid>
-                        </center>
                         <br/>
                         <h:commandButton action="#{userBean.createEmployee}" class="btn btn-lg btn-primary" value="Registrar"/>
                         <br/><br/>

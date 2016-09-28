@@ -15,6 +15,9 @@ and open the template in the editor.
         <h2>Actualizar parte #{partBean.id}</h2>
         <center>
             <h:form class="form-horizontal">
+                <h:outputText value="ID"/>
+                <h:inputText value="#{partBean.id}"/>
+                
                 <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Nombre</label>
                     <div class="col-sm-10">
