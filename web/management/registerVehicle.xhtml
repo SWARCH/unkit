@@ -10,79 +10,81 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Registro de vehículos</title>
         <meta charset="utf-8"></meta>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content=""></meta>
+        <meta name="author" content=""></meta>
+        <link rel="icon" href="../../favicon.ico"></link>
 
-        <!-- Bootstrap -->
+        <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet"></link>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
+
+        <!-- Custom styles for this template -->
+        <link href="navbar.css" rel="stylesheet"></link>
+        <title>Registro de vehículos</title>
     </h:head>
     <h:body>
-        <h2>Registrar vehículo</h2>
-        <center>
-            <h:form class="form-horizontal">
-                <div class="form-group">
-                    <label for="inputVehicleID" class="col-sm-2 control-label">ID</label>
-                    <div class="col-sm-10">
-                        <h:inputText value="#{vehicleBean.id}" required="true" requiredMessage="Se requiere un ID"></h:inputText>
+        <div class="container">
+            <!-- Static navbar -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.xhtml">UN-KIT Solutions, Ltd.</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="management/manager.xhtml">Inicio</a></li>
+                            <li><a href="management/managementEmployee.xhtml">Gestión de empleados</a></li>
+                            <li><a href="management/managementParts.xhtml">Gestión de partes</a></li>
+                            <li><a href="management/managementVehicles.xhtml">Gestión de vehículos</a></li>
+                            <li><a href="management/editPassword.xhtml">Cambiar contraseña</a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="inputTrademarke" class="col-sm-2 control-label">Marca</label>
-                    <div class="col-sm-10">
-                        <h:inputText value="#{vehicleBean.trademark}" required="true" requiredMessage="Se requiere un nombre"></h:inputText>
-                    </div>
-                </div>
+            </nav>
+            <div class="jumbotron">
+                <center>
+                    <h2>Registrar vehículo</h2>
+                    <h:form class="form-horizontal">
+                        <h:panelGrid columns="2">
+                            <h:outputText value="ID"/>
+                            <h:inputText value="#{vehicleBean.id}" required="true" requiredMessage="Se requiere un ID"></h:inputText>
 
-                <div class="form-group">
-                    <label for="inputModel" class="col-sm-2 control-label">Modelo</label>
-                    <div class="col-sm-10">
-                        <h:inputText value="#{vehicleBean.model}" required="true" requiredMessage="Se requiere una descripción"></h:inputText>
-                    </div>
-                </div>
+                            <h:outputText value="Marca"/>
+                            <h:inputText value="#{vehicleBean.trademark}" required="true" requiredMessage="Se requiere un nombre"></h:inputText>
 
-                <div class="form-group">
-                    <label for="inputVeName" class="col-sm-2 control-label">Descripción</label>
-                    <div class="col-sm-10">
-                        <div class="input-group">
+                            <h:outputText value="Modelo"/>
+                            <h:inputText value="#{vehicleBean.model}" required="true" requiredMessage="Se requiere una descripción"></h:inputText>
+
+                            <h:outputText value="Descripción"/>
                             <h:inputTextarea cols="30" rows="10" class="form-control" value="#{vehicleBean.description}" id="inputDescr" required="true" requiredMessage="Se requiere un costo"></h:inputTextarea>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="inputColor" class="col-sm-2 control-label">Color</label>
-                    <div class="col-sm-10">
-                        <div class="input-group">
-                            <h:inputText class="form-control" value="#{vehicleBean.color}" id="inputVeColor" required="true" requiredMessage="Se requiere un costo"></h:inputText>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="inputVeCost" class="col-sm-2 control-label">Costo</label>
-                    <div class="col-sm-10">
-                        <div class="input-group">
-                            <h:inputText class="form-control" value="#{vehicleBean.cost}" id="inputVeCost" required="true" requiredMessage="Se requiere un costo"></h:inputText>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:commandButton action="#{vehicleBean.createVehicle}" value="Registrar"></h:commandButton>
-                    </div>
-                </div>
-                
-                <h:outputText value="#{vehicleBean.message}"/>
-                
-            </h:form>
-        </center>
+                            <h:outputText value="Color"/>
+                            <h:inputText class="form-control" value="#{vehicleBean.color}" id="inputVeColor" required="true" requiredMessage="Se requiere un costo"></h:inputText>
+
+                            <h:outputText value="Costo"/>
+                            <h:inputText class="form-control" value="#{vehicleBean.cost}" id="inputVeCost" required="true" requiredMessage="Se requiere un costo"></h:inputText>
+                        </h:panelGrid>
+
+                        <br/>
+                        <h:commandButton action="#{vehicleBean.createVehicle}" class="btn btn-lg btn-primary" value="Registrar"></h:commandButton>
+                        <br/><br/>
+                        <h:outputText value="#{partBean.message}"/>
+                    </h:form>
+                </center>
+            </div>
+            <footer>
+                <p>&#169; 2016 UNKIT, Inc.</p>
+            </footer>
+        </div> 
     </h:body>
 </html>
 

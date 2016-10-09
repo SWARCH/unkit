@@ -173,15 +173,14 @@ public class UserBean {
         return message;
     }
 
-    public String createAccount() {
+    public void createAccount() {
         HandleUser createAccount = new HandleUser();
         HandleCustomer cx = new HandleCustomer();
         this.setMessage(createAccount.createUser(username, password, id)
             + (cx.createAccount(id, tradeName, type)));
         if (message!=null){
-            this.setMessage("cliente");
+            this.setMessage("El registro se realizó con éxito");
         }
-        return message;
     }
 
     public void createEmployee() {

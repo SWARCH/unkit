@@ -94,12 +94,7 @@
             <from-outcome>ensambladora</from-outcome>
             <to-view-id>/customerEnsambladora.xhtml</to-view-id>
             
-        </navigation-case>  
-<navigation-case>
-            <from-outcome>cliente</from-outcome>
-            <to-view-id>/index.xhtml</to-view-id>
-            
-        </navigation-case>  
+        </navigation-case>   
         <navigation-case>
             <from-outcome>manager</from-outcome>
             <to-view-id>/management/manager.xhtml</to-view-id>            
