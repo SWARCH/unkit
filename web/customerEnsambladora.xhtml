@@ -5,31 +5,81 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Clientes</title>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content=""></meta>
+        <meta name="author" content=""></meta>
+        <link rel="icon" href="../../favicon.ico"></link>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet"></link>
+
+        <!-- Custom styles for this template -->
+        <link href="navbar.css" rel="stylesheet"></link>
+        <title>Ensambladoras</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
 
     <h:body>
-        <center><h1>
-                #{customerBean.setId(userBean.id)}
-                #{customerBean.customerLoged()}
-                Bienvenido  #{customerBean.tradeName}
-            </h1></center>
-        <center>            
-            <h:form>
-                <h2>Datos personales</h2>
-                <h:panelGrid columns="2">
-                    <h:outputText value="Identificación"></h:outputText>
-                    <h:outputText value="#{customerBean.id}"></h:outputText>
-                    <h:outputText value="Tipo"></h:outputText>
-                    <h:outputText value="#{customerBean.getType()}"></h:outputText>
-                    </h:panelGrid>
-                <a href="./faces/viewParts.xhtml">Realizar pedidos</a>
-                <br/>
-                <h:commandButton id="logout" value="Logout" action="#{userBean.logout}"/>
-            </h:form>
-        </center>
+        <div class="container">
+
+            <!-- Static navbar -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.xhtml">UN-KIT Solutions, Ltd.</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="customerEnsambladora.xhtml">Inicio</a></li>
+                            <li><a href="customerEnsambladora.xhtml">Realizar un pedido</a></li>
+                            <li><a href="customerEnsambladora.xhtml">Cambiar contraseña</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main component for a primary marketing message or call to action -->
+            <div class="jumbotron">
+                <center><h1>
+                        #{userBean.loged()}
+                        #{customerBean.setId(userBean.id)}
+                        #{customerBean.customerLoged()}
+                        Bienvenido  #{customerBean.tradeName}
+                    </h1></center>
+                <center>            
+                    <h:form>
+                        <h2>Datos personales</h2>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Identificación"></h:outputText>
+                            <h:outputText value="#{customerBean.id}"></h:outputText>
+                            <h:outputText value="Tipo"></h:outputText>
+                            <h:outputText value="#{customerBean.getType()}"></h:outputText>
+                        </h:panelGrid>
+                        <a href="./faces/viewParts.xhtml">Realizar pedidos</a>
+                        <br/>
+                    </h:form>
+                </center>
+                <p>
+                    <h:form>
+                        <h:commandButton id="logout" class="btn btn-lg btn-primary" value="Logout" action="#{userBean.logout}"/>
+                    </h:form>
+                    <!--<a class="btn btn-lg btn-primary" href="employeeRol/employee.xhtml" role="button">Ingresar</a>-->
+                </p>
+            </div>
+            <footer>
+                <p>&#169; 2016 UNKIT, Inc.</p>
+            </footer>
+        </div>
     </h:body> 
 </html>
