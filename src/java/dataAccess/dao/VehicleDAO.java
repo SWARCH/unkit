@@ -20,7 +20,7 @@ import javax.persistence.Persistence;
 public class VehicleDAO {
 
     public EntityManagerFactory emf1
-            = Persistence.createEntityManagerFactory("UNKITPU");
+            = Persistence.createEntityManagerFactory("UNKITPU2");
 
     public List<Vehicle> findAll() {
         EntityManager v = emf1.createEntityManager();

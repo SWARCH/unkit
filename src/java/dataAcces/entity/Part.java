@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author VangsPardz
+ * @author lorena
  */
 @Entity
 @Table(name = "Part")
@@ -34,10 +34,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Part.findByDescription", query = "SELECT p FROM Part p WHERE p.description = :description"),
     @NamedQuery(name = "Part.findByCost", query = "SELECT p FROM Part p WHERE p.cost = :cost")})
 public class Part implements Serializable {
-
-    @ManyToMany(mappedBy = "partCollection")
-    private Collection<OrderSale> orderSaleCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -57,6 +53,8 @@ public class Part implements Serializable {
     @NotNull
     @Column(name = "cost")
     private double cost;
+    @ManyToMany(mappedBy = "partCollection")
+    private Collection<Order1> order1Collection;
 
     public Part() {
     }
@@ -103,6 +101,15 @@ public class Part implements Serializable {
         this.cost = cost;
     }
 
+    @XmlTransient
+    public Collection<Order1> getOrder1Collection() {
+        return order1Collection;
+    }
+
+    public void setOrder1Collection(Collection<Order1> order1Collection) {
+        this.order1Collection = order1Collection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -126,15 +133,6 @@ public class Part implements Serializable {
     @Override
     public String toString() {
         return "dataAcces.entity.Part[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public Collection<OrderSale> getOrderSaleCollection() {
-        return orderSaleCollection;
-    }
-
-    public void setOrderSaleCollection(Collection<OrderSale> orderSaleCollection) {
-        this.orderSaleCollection = orderSaleCollection;
     }
     
 }

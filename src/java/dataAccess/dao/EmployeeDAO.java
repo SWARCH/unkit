@@ -21,7 +21,7 @@ import javax.validation.ConstraintViolationException;
 public class EmployeeDAO {
 
     public EntityManagerFactory emf1 = 
-            Persistence.createEntityManagerFactory("UNKITPU");
+            Persistence.createEntityManagerFactory("UNKITPU2");
     
     public Employee persist(Employee employee) {
         EntityManager em = emf1.createEntityManager();

@@ -27,23 +27,22 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author VangsPardz
+ * @author lorena
  */
 @Entity
-@Table(name = "order")
+@Table(name = "Order")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "OrderSale.findAll", query = "SELECT o FROM OrderSale o"),
-    @NamedQuery(name = "OrderSale.findById", query = "SELECT o FROM OrderSale o WHERE o.orderSalePK.id = :id"),
-    @NamedQuery(name = "OrderSale.findByOrderCost", query = "SELECT o FROM OrderSale o WHERE o.orderCost = :orderCost"),
-    @NamedQuery(name = "OrderSale.findByDate", query = "SELECT o FROM OrderSale o WHERE o.date = :date"),
-    @NamedQuery(name = "OrderSale.findByDeliveryDate", query = "SELECT o FROM OrderSale o WHERE o.deliveryDate = :deliveryDate"),
-    @NamedQuery(name = "OrderSale.findByCustomerUserid", query = "SELECT o FROM OrderSale o WHERE o.orderSalePK.customerUserid = :customerUserid")})
-public class OrderSale implements Serializable {
-
+    @NamedQuery(name = "Order1.findAll", query = "SELECT o FROM Order1 o"),
+    @NamedQuery(name = "Order1.findById", query = "SELECT o FROM Order1 o WHERE o.order1PK.id = :id"),
+    @NamedQuery(name = "Order1.findByOrderCost", query = "SELECT o FROM Order1 o WHERE o.orderCost = :orderCost"),
+    @NamedQuery(name = "Order1.findByDate", query = "SELECT o FROM Order1 o WHERE o.date = :date"),
+    @NamedQuery(name = "Order1.findByDeliveryDate", query = "SELECT o FROM Order1 o WHERE o.deliveryDate = :deliveryDate"),
+    @NamedQuery(name = "Order1.findByCustomerUserid", query = "SELECT o FROM Order1 o WHERE o.order1PK.customerUserid = :customerUserid")})
+public class Order1 implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
-    protected OrderSalePK orderSalePK;
+    protected Order1PK order1PK;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "orderCost")
     private Double orderCost;
@@ -55,13 +54,13 @@ public class OrderSale implements Serializable {
     @Column(name = "deliveryDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date deliveryDate;
-    @JoinTable(name = "orderpart", joinColumns = {
+    @JoinTable(name = "OrderPart", joinColumns = {
         @JoinColumn(name = "Order_id", referencedColumnName = "id"),
         @JoinColumn(name = "Order_Customer_User_id", referencedColumnName = "Customer_User_id")}, inverseJoinColumns = {
         @JoinColumn(name = "Part_id", referencedColumnName = "id")})
     @ManyToMany
     private Collection<Part> partCollection;
-    @JoinTable(name = "ordervehicle", joinColumns = {
+    @JoinTable(name = "OrderVehicle", joinColumns = {
         @JoinColumn(name = "Order_id", referencedColumnName = "id"),
         @JoinColumn(name = "Order_Customer_User_id", referencedColumnName = "Customer_User_id")}, inverseJoinColumns = {
         @JoinColumn(name = "Vehicle_id", referencedColumnName = "id")})
@@ -71,28 +70,28 @@ public class OrderSale implements Serializable {
     @ManyToOne(optional = false)
     private Customer customer;
 
-    public OrderSale() {
+    public Order1() {
     }
 
-    public OrderSale(OrderSalePK orderSalePK) {
-        this.orderSalePK = orderSalePK;
+    public Order1(Order1PK order1PK) {
+        this.order1PK = order1PK;
     }
 
-    public OrderSale(OrderSalePK orderSalePK, Date date) {
-        this.orderSalePK = orderSalePK;
+    public Order1(Order1PK order1PK, Date date) {
+        this.order1PK = order1PK;
         this.date = date;
     }
 
-    public OrderSale(String id, String customerUserid) {
-        this.orderSalePK = new OrderSalePK(id, customerUserid);
+    public Order1(String id, String customerUserid) {
+        this.order1PK = new Order1PK(id, customerUserid);
     }
 
-    public OrderSalePK getOrderSalePK() {
-        return orderSalePK;
+    public Order1PK getOrder1PK() {
+        return order1PK;
     }
 
-    public void setOrderSalePK(OrderSalePK orderSalePK) {
-        this.orderSalePK = orderSalePK;
+    public void setOrder1PK(Order1PK order1PK) {
+        this.order1PK = order1PK;
     }
 
     public Double getOrderCost() {
@@ -148,18 +147,18 @@ public class OrderSale implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (orderSalePK != null ? orderSalePK.hashCode() : 0);
+        hash += (order1PK != null ? order1PK.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof OrderSale)) {
+        if (!(object instanceof Order1)) {
             return false;
         }
-        OrderSale other = (OrderSale) object;
-        if ((this.orderSalePK == null && other.orderSalePK != null) || (this.orderSalePK != null && !this.orderSalePK.equals(other.orderSalePK))) {
+        Order1 other = (Order1) object;
+        if ((this.order1PK == null && other.order1PK != null) || (this.order1PK != null && !this.order1PK.equals(other.order1PK))) {
             return false;
         }
         return true;
@@ -167,7 +166,7 @@ public class OrderSale implements Serializable {
 
     @Override
     public String toString() {
-        return "dataAcces.entity.OrderSale[ orderSalePK=" + orderSalePK + " ]";
+        return "dataAcces.entity.Order1[ order1PK=" + order1PK + " ]";
     }
     
 }

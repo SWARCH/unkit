@@ -5,7 +5,8 @@
  */
 package businessLogic.controller;
 
-import dataAcces.entity.OrderSale;
+import dataAcces.entity.Order1;
+import dataAcces.entity.Order1PK;
 import dataAcces.entity.Vehicle;
 import dataAccess.dao.OrderSaleDAO;
 import dataAccess.dao.VehicleDAO;
@@ -33,7 +34,7 @@ public class HandleVehicle {
     }
 
     public String order(List<Vehicle> v) {
-        OrderSale order = new OrderSale();
+        Order1 order = new Order1();
         double cost = 0.0;
         for (Vehicle x : v) {
             cost += x.getCost();
@@ -41,10 +42,10 @@ public class HandleVehicle {
         order.setOrderCost(cost);
         order.setDate(null);
         order.setDeliveryDate(null);
-        order.setOrderSalePK(null);
+        order.setOrder1PK(null);
 
         OrderSaleDAO os = new OrderSaleDAO();
-        OrderSale oss = os.persist(order);
+        Order1 oss = os.persist(order);
         if (oss != null) {
             return "Compra exitosa " + order.getOrderCost() + "  ss " ;
         } else {

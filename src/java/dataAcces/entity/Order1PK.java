@@ -14,11 +14,10 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author VangsPardz
+ * @author lorena
  */
 @Embeddable
-public class OrderSalePK implements Serializable {
-
+public class Order1PK implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -30,10 +29,10 @@ public class OrderSalePK implements Serializable {
     @Column(name = "Customer_User_id")
     private String customerUserid;
 
-    public OrderSalePK() {
+    public Order1PK() {
     }
 
-    public OrderSalePK(String id, String customerUserid) {
+    public Order1PK(String id, String customerUserid) {
         this.id = id;
         this.customerUserid = customerUserid;
     }
@@ -65,10 +64,10 @@ public class OrderSalePK implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof OrderSalePK)) {
+        if (!(object instanceof Order1PK)) {
             return false;
         }
-        OrderSalePK other = (OrderSalePK) object;
+        Order1PK other = (Order1PK) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -80,7 +79,7 @@ public class OrderSalePK implements Serializable {
 
     @Override
     public String toString() {
-        return "dataAcces.entity.OrderSalePK[ id=" + id + ", customerUserid=" + customerUserid + " ]";
+        return "dataAcces.entity.Order1PK[ id=" + id + ", customerUserid=" + customerUserid + " ]";
     }
     
 }

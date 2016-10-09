@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author VangsPardz
+ * @author lorena
  */
 @Entity
 @Table(name = "Vehicle")
@@ -36,10 +36,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Vehicle.findByColor", query = "SELECT v FROM Vehicle v WHERE v.color = :color"),
     @NamedQuery(name = "Vehicle.findByCost", query = "SELECT v FROM Vehicle v WHERE v.cost = :cost")})
 public class Vehicle implements Serializable {
-
-    @ManyToMany(mappedBy = "vehicleCollection")
-    private Collection<OrderSale> orderSaleCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -66,6 +62,8 @@ public class Vehicle implements Serializable {
     @NotNull
     @Column(name = "cost")
     private double cost;
+    @ManyToMany(mappedBy = "vehicleCollection")
+    private Collection<Order1> order1Collection;
 
     public Vehicle() {
     }
@@ -129,6 +127,15 @@ public class Vehicle implements Serializable {
         this.cost = cost;
     }
 
+    @XmlTransient
+    public Collection<Order1> getOrder1Collection() {
+        return order1Collection;
+    }
+
+    public void setOrder1Collection(Collection<Order1> order1Collection) {
+        this.order1Collection = order1Collection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -152,15 +159,6 @@ public class Vehicle implements Serializable {
     @Override
     public String toString() {
         return "dataAcces.entity.Vehicle[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public Collection<OrderSale> getOrderSaleCollection() {
-        return orderSaleCollection;
-    }
-
-    public void setOrderSaleCollection(Collection<OrderSale> orderSaleCollection) {
-        this.orderSaleCollection = orderSaleCollection;
     }
     
 }

@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author mauricio
+ * @author lorena
  */
 @Entity
 @Table(name = "Employee")
@@ -35,45 +35,35 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Employee.findByContractStatus", query = "SELECT e FROM Employee e WHERE e.contractStatus = :contractStatus"),
     @NamedQuery(name = "Employee.findByUserid", query = "SELECT e FROM Employee e WHERE e.userid = :userid")})
 public class Employee implements Serializable {
-
     private static final long serialVersionUID = 1L;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "name")
     private String name;
-    
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "employeeRole")
     private String employeeRole;
-    
     @Basic(optional = false)
     @NotNull
     @Column(name = "salary")
     private double salary;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "contractType")
     private String contractType;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
     @Column(name = "contractStatus")
     private String contractStatus;
-    
     @Id
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "User_id")
     private String userid;
-    
     @JoinColumn(name = "User_id", referencedColumnName = "id", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private User user;
@@ -85,10 +75,9 @@ public class Employee implements Serializable {
         this.userid = userid;
     }
 
-    public Employee(String userid, String name, String employeeRole, double salary, String contractType, String contractStatus) {
+    public Employee(String userid, String name, double salary, String contractType, String contractStatus) {
         this.userid = userid;
         this.name = name;
-        this.employeeRole = employeeRole;
         this.salary = salary;
         this.contractType = contractType;
         this.contractStatus = contractStatus;
@@ -103,11 +92,11 @@ public class Employee implements Serializable {
     }
 
     public String getEmployeeRole() {
-        return employeeRole.toUpperCase();
+        return employeeRole;
     }
 
     public void setEmployeeRole(String employeeRole) {
-        this.employeeRole = employeeRole.toUpperCase();
+        this.employeeRole = employeeRole;
     }
 
     public double getSalary() {
@@ -172,8 +161,7 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        //return "dataAcces.entity.Employee[ userid=" + userid + " ]";
-        return "employeeDAO: " + name +" "+ employeeRole +" "+ salary +" "+ contractType +" "+ contractStatus +" "+ userid;
+        return "dataAcces.entity.Employee[ userid=" + userid + " ]";
     }
     
 }

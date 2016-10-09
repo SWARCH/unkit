@@ -6,7 +6,7 @@
 package dataAccess.dao;
 
 
-import dataAcces.entity.OrderSale;
+import dataAcces.entity.Order1;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -17,8 +17,8 @@ import javax.persistence.Persistence;
  */
 public class OrderSaleDAO {
     public EntityManagerFactory emf = 
-            Persistence.createEntityManagerFactory("UNKITPU");
-    public OrderSale persist(OrderSale os) {
+            Persistence.createEntityManagerFactory("UNKITPU2");
+    public Order1 persist(Order1 os) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {

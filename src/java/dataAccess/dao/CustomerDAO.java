@@ -18,7 +18,7 @@ import javax.persistence.Persistence;
 public class CustomerDAO {
     
     public EntityManagerFactory emf = 
-            Persistence.createEntityManagerFactory("UNKITPU");
+            Persistence.createEntityManagerFactory("UNKITPU2");
     
     public Customer searchByUserid(String userid) {
         EntityManager em = emf.createEntityManager();

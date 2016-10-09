@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author mauricio
+ * @author lorena
  */
 @Entity
 @Table(name = "User")
@@ -32,7 +32,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
 public class User implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -51,20 +50,15 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-    private Employee employee;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Customer customer;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Employee employee;
 
     public User() {
     }
 
     public User(String id) {
         this.id = id;
-    }
-    
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
     }
 
     public User(String id, String username, String password) {
@@ -97,20 +91,20 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @Override

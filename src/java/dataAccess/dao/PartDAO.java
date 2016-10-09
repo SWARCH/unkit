@@ -17,7 +17,7 @@ import javax.persistence.Persistence;
 public class PartDAO {
     
     public EntityManagerFactory emf = 
-            Persistence.createEntityManagerFactory("UNKITPU");
+            Persistence.createEntityManagerFactory("UNKITPU2");
     
     public Part persist(Part newPart) {
         EntityManager em = emf.createEntityManager();

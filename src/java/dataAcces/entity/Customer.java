@@ -6,22 +6,26 @@
 package dataAcces.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author mauricio
+ * @author lorena
  */
 @Entity
 @Table(name = "Customer")
@@ -32,7 +36,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Customer.findByType", query = "SELECT c FROM Customer c WHERE c.type = :type"),
     @NamedQuery(name = "Customer.findByUserid", query = "SELECT c FROM Customer c WHERE c.userid = :userid")})
 public class Customer implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull
@@ -53,6 +56,8 @@ public class Customer implements Serializable {
     @JoinColumn(name = "User_id", referencedColumnName = "id", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private User user;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    private Collection<Order1> order1Collection;
 
     public Customer() {
     }
@@ -76,11 +81,11 @@ public class Customer implements Serializable {
     }
 
     public String getType() {
-        return type.toUpperCase();
+        return type;
     }
 
     public void setType(String type) {
-        this.type = type.toUpperCase();
+        this.type = type;
     }
 
     public String getUserid() {
@@ -97,6 +102,15 @@ public class Customer implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @XmlTransient
+    public Collection<Order1> getOrder1Collection() {
+        return order1Collection;
+    }
+
+    public void setOrder1Collection(Collection<Order1> order1Collection) {
+        this.order1Collection = order1Collection;
     }
 
     @Override

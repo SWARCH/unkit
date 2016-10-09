@@ -20,7 +20,7 @@ import javax.persistence.TypedQuery;
 public class UserDAO {
 
     public EntityManagerFactory emf
-            = Persistence.createEntityManagerFactory("UNKITPU");
+            = Persistence.createEntityManagerFactory("UNKITPU2");
 
     public User searchByID(String id) {
         EntityManager em = emf.createEntityManager();
