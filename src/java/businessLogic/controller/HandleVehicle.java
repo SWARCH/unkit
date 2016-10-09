@@ -68,5 +68,29 @@ public class HandleVehicle {
         if (ex != null) return "El vehiculo ha sido registrado de manera correcta";
         return "Error al registrar el vehiclulo, consulte a los ingenieros";
     }
+    
+    public String updateVehicle(String id, String trademark,int model,String color, String description, double cost ) {
+        
+        System.out.println("Handle Vehicle: " + id);
+        
+        VehicleDAO vehicleDAO = new VehicleDAO();
+        Vehicle candidate = vehicleDAO.searchByID(id);
+        
+        candidate.setTrademark(trademark);
+        candidate.setModel(model);
+        candidate.setColor(color);
+        candidate.setDescription(description);
+        candidate.setCost(cost);
+    
+        if (candidate == null) {
+            System.out.println("What the hell");
+            
+            return "Error al actualizar";
+        }
+        
+        vehicleDAO.update(candidate);
+        return "El vehículo " + id + "se actualizó correctamente.";
+        
+    }
 
 }

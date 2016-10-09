@@ -27,7 +27,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class VehicleBean implements Serializable{
+public class VehicleBean implements Serializable {
 
     private String message, id, trademark, description, color;
     private double cost;
@@ -36,8 +36,8 @@ public class VehicleBean implements Serializable{
     public Vehicle product = new Vehicle();
     private HtmlInputHidden productId = new HtmlInputHidden();
     private List<Vehicle> cart = new ArrayList<Vehicle>();
-    
-    @ManagedProperty( value = "#{cart}" )
+
+    @ManagedProperty(value = "#{cart}")
     Cart myCart;
 
     public VehicleBean() {
@@ -125,7 +125,7 @@ public class VehicleBean implements Serializable{
     public String getQuery() {
         return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("query");
     }
-    
+
     public void checkIfQueryExists() {
         VehicleDAO vehicleDAO = new VehicleDAO();
         if (vehicleDAO.checkIfQueryExists(getQuery()) == 0) {
@@ -134,19 +134,21 @@ public class VehicleBean implements Serializable{
             } catch (IOException ex) {
                 Logger.getLogger(VehicleBean.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else System.out.println("it actually exist!");
+        } else {
+            System.out.println("it actually exist!");
+        }
     }
-    
+
     public Vehicle getSingleVehicle() {
         VehicleDAO vehicleDAO = new VehicleDAO();
         return vehicleDAO.returnVehicle(getQuery());
     }
-    
+
     public void addToCart() {
         this.setMessage("ha entrado!");
         VehicleDAO vehicleDAO = new VehicleDAO();
         VehicleDAO vehicle = (VehicleDAO) dataTable.getRowData();
-       // String query = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("query");
+        // String query = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("query");
         myCart.add(vehicle.searchByID(productId.toString()));
         this.setMessage("agregad " + id + " ");
     }
@@ -157,6 +159,14 @@ public class VehicleBean implements Serializable{
 
     public void setMyCart(Cart myCart) {
         this.myCart = myCart;
+    }
+
+    public void updateVehicle() {
+        System.out.println(this);
+        System.out.println("UPDATE: " + id);
+        HandleVehicle vehicleUpdater = new HandleVehicle();
+        this.setMessage(vehicleUpdater.updateVehicle(id, trademark, model, color, description, cost));
+
     }
 
 }
