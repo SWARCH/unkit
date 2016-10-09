@@ -177,8 +177,8 @@ public class UserBean {
         HandleUser createAccount = new HandleUser();
         HandleCustomer cx = new HandleCustomer();
         this.setMessage(createAccount.createUser(username, password, id)
-            + (cx.createAccount(id, tradeName, type)));
-        if (message!=null){
+                + (cx.createAccount(id, tradeName, type)));
+        if (message != null) {
             this.setMessage("El registro se realizó con éxito");
         }
     }
@@ -250,6 +250,7 @@ public class UserBean {
         setId(userLoged.getId());
         setUsername(userLoged.getUsername());
         setPassword(userLoged.getPassword());
+        System.out.println("SOy:" + username);
     }
 
     public String logout() {
